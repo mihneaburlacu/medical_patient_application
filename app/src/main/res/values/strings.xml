@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Med Plat</string>
+    <string name="welcome_text">Welcome!</string>
+    <string name="please_login_text">Please login here</string>
+    <string name="username_text">Username</string>
+    <string name="password_text">Password</string>
+    <string name="remember_text">Remember me</string>
+    <string name="login_text">Login</string>
+    <string name="no_account_text">Don\'t have an account?</string>
+    <string name="sign_up_text">Sign up</string>
+</resources>

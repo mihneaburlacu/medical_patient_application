@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="normal_text_size">18sp</dimen>
+
+    <dimen name="margin_vertical_between_elements">24dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="general_radius">16dp</dimen>
+
+    <!--    Login dimens-->
+    <dimen name="app_title_size">36sp</dimen>
+    <dimen name="register_text_size">16sp</dimen>
+
+    <dimen name="margin_top_between_app_details_and_information">56dp</dimen>
+    <dimen name="margin_between_inputs">16dp</dimen>
+</resources>

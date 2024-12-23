@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="InformationText">
+        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:textColor">@color/main_color</item>
+    </style>
+</resources>
