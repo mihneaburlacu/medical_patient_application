@@ -1,6 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_top_guideline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.02" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_bottom_guideline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical_start_guideline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical_end_guideline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <ImageView
+        android:id="@+id/app_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/app_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_top_guideline" />
+
+    <TextView
+        android:id="@+id/app_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/anton_regular"
+        android:text="@string/app_name"
+        android:textAllCaps="true"
+        android:textColor="@color/secondary_color"
+        android:textSize="@dimen/app_title_size_low"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_icon" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/username_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_between_inputs"
+        android:background="@drawable/sh_input_login"
+        app:boxBackgroundMode="filled"
+        app:boxCornerRadiusBottomEnd="@dimen/general_radius"
+        app:boxCornerRadiusBottomStart="@dimen/general_radius"
+        app:boxCornerRadiusTopEnd="@dimen/general_radius"
+        app:boxCornerRadiusTopStart="@dimen/general_radius"
+        app:boxStrokeColor="@android:color/transparent"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+        app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/app_title"
+        app:startIconDrawable="@drawable/ic_username">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/username_text"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textColorHint="@color/input_text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_between_inputs"
+        android:background="@drawable/sh_input_login"
+        app:boxBackgroundMode="filled"
+        app:boxCornerRadiusBottomEnd="@dimen/general_radius"
+        app:boxCornerRadiusBottomStart="@dimen/general_radius"
+        app:boxCornerRadiusTopEnd="@dimen/general_radius"
+        app:boxCornerRadiusTopStart="@dimen/general_radius"
+        app:boxStrokeColor="@android:color/transparent"
+        app:boxStrokeWidth="0dp"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+        app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/username_input"
+        app:startIconDrawable="@drawable/ic_password">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password_text"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            android:textColorHint="@color/input_text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_between_inputs"
+        android:background="@drawable/sh_input_login"
+        app:boxBackgroundMode="filled"
+        app:boxCornerRadiusBottomEnd="@dimen/general_radius"
+        app:boxCornerRadiusBottomStart="@dimen/general_radius"
+        app:boxCornerRadiusTopEnd="@dimen/general_radius"
+        app:boxCornerRadiusTopStart="@dimen/general_radius"
+        app:boxStrokeColor="@android:color/transparent"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+        app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/password_input"
+        app:startIconDrawable="@drawable/ic_email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email_text"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black"
+            android:textColorHint="@color/input_text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/name_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_between_inputs"
+        android:background="@drawable/sh_input_login"
+        app:boxBackgroundMode="filled"
+        app:boxCornerRadiusBottomEnd="@dimen/general_radius"
+        app:boxCornerRadiusBottomStart="@dimen/general_radius"
+        app:boxCornerRadiusTopEnd="@dimen/general_radius"
+        app:boxCornerRadiusTopStart="@dimen/general_radius"
+        app:boxStrokeColor="@android:color/transparent"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+        app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/email_input"
+        app:startIconDrawable="@drawable/ic_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name_text"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textColorHint="@color/input_text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phone_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_between_inputs"
+        android:background="@drawable/sh_input_login"
+        app:boxBackgroundMode="filled"
+        app:boxCornerRadiusBottomEnd="@dimen/general_radius"
+        app:boxCornerRadiusBottomStart="@dimen/general_radius"
+        app:boxCornerRadiusTopEnd="@dimen/general_radius"
+        app:boxCornerRadiusTopStart="@dimen/general_radius"
+        app:boxStrokeColor="@android:color/transparent"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+        app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/name_input"
+        app:startIconDrawable="@drawable/ic_phone">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone_text"
+            android:inputType="phone"
+            android:textColor="@color/black"
+            android:textColorHint="@color/input_text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fitbit_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_between_inputs"
+        android:background="@drawable/sh_input_login"
+        app:boxBackgroundMode="filled"
+        app:boxCornerRadiusBottomEnd="@dimen/general_radius"
+        app:boxCornerRadiusBottomStart="@dimen/general_radius"
+        app:boxCornerRadiusTopEnd="@dimen/general_radius"
+        app:boxCornerRadiusTopStart="@dimen/general_radius"
+        app:boxStrokeColor="@android:color/transparent"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+        app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/phone_input"
+        app:startIconDrawable="@drawable/ic_fitbit">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/fitbit_text"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textColorHint="@color/input_text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_between_inputs"
+        android:background="@drawable/sh_login_button"
+        android:text="@string/register_text"
+        android:textColor="@color/white"
+        android:textSize="@dimen/normal_text_size"
+        app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+        app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/fitbit_input" />
 </androidx.constraintlayout.widget.ConstraintLayout>
