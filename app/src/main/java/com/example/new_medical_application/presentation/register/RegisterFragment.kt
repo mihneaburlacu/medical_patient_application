@@ -1,10 +1,16 @@
 package com.example.new_medical_application.presentation.register
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.new_medical_application.R
 import com.example.new_medical_application.databinding.FragmentRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -12,10 +18,12 @@ import dagger.hilt.android.AndroidEntryPoint
 class RegisterFragment : Fragment() {
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: RegisterViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
+        observeViewModel()
     }
 
     override fun onCreateView(
@@ -29,12 +37,45 @@ class RegisterFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        viewModel.resetState()
         _binding = null
     }
 
     private fun setListeners() {
         binding.apply {
+            registerButton.setOnClickListener {
+                val username = binding.usernameInput.editText?.text.toString()
+                val password = binding.passwordInput.editText?.text.toString()
+                val email = binding.emailInput.editText?.text.toString()
+                val name = binding.nameInput.editText?.text.toString()
+                val phoneNumber = binding.phoneInput.editText?.text.toString()
+                val fitbitId = binding.fitbitInput.editText?.text.toString()
+                viewModel.register(username, password, email, name, phoneNumber, fitbitId)
+            }
+        }
+    }
 
+    //TODO: modify deprecated function
+    private fun observeViewModel() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.registrationState.collect { state ->
+                when (state) {
+                    is RegisterViewModel.RegistrationState.Idle -> {
+                    }
+
+                    is RegisterViewModel.RegistrationState.Loading -> {
+//                        Toast.makeText(context, "Registering...", Toast.LENGTH_SHORT).show()
+                    }
+
+                    is RegisterViewModel.RegistrationState.Success -> {
+                        findNavController().navigate(R.id.action_registerFragment_to_mainMenuFragment)
+                    }
+
+                    is RegisterViewModel.RegistrationState.Error -> {
+                        Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
     }
 }

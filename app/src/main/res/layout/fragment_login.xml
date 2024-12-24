@@ -184,7 +184,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:text="@string/sign_up_text"
-            android:textColor="@color/secondary_color"
+            android:textColor="@drawable/sel_sign_up_button"
             android:textSize="@dimen/register_text_size"
             android:textStyle="bold" />
     </LinearLayout>
