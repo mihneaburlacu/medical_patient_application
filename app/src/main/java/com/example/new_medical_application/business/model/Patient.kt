@@ -1,7 +1,7 @@
 package com.example.new_medical_application.business.model
 
 data class Patient(
-    val id: Long,
+    var id: Long,
     var username: String = "",
     var password: String = "",
     var email: String = "",

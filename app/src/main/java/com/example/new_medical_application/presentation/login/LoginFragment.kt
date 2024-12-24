@@ -7,11 +7,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.new_medical_application.R
 import com.example.new_medical_application.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -53,24 +56,24 @@ class LoginFragment : Fragment() {
         }
     }
 
-    //TODO: modify deprecated method
     private fun observeViewModel() {
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.loginState.collect { state ->
-                when (state) {
-                    is LoginViewModel.LoginState.Idle -> {
-                    }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.loginState.collect { state ->
+                    when (state) {
+                        is LoginViewModel.LoginState.Idle -> {
+                        }
 
-                    is LoginViewModel.LoginState.Loading -> {
-//                        Toast.makeText(context, "Logging in...", Toast.LENGTH_SHORT).show()
-                    }
+                        is LoginViewModel.LoginState.Loading -> {
+                        }
 
-                    is LoginViewModel.LoginState.Success -> {
-                        findNavController().navigate(R.id.action_loginFragment_to_mainMenuFragment)
-                    }
+                        is LoginViewModel.LoginState.Success -> {
+                            findNavController().navigate(R.id.action_loginFragment_to_mainMenuFragment)
+                        }
 
-                    is LoginViewModel.LoginState.Error -> {
-                        Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
+                        is LoginViewModel.LoginState.Error -> {
+                            Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
             }

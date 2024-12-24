@@ -8,6 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -35,8 +36,10 @@ class RegisterViewModel @Inject constructor(
             _registrationState.value = RegistrationState.Loading
             try {
                 val patient = Patient(0, username, password, email, name, phoneNumber, fitbitId)
-                patientUseCase.insertPatient(patient)
-                _registrationState.value = RegistrationState.Success
+                patientUseCase.insertPatient(patient).collect {
+                    patient.id = it
+                }
+                _registrationState.value = RegistrationState.Success(patient)
             } catch (e: Exception) {
                 _registrationState.value = RegistrationState.Error("Registration failed")
             }
@@ -50,7 +53,7 @@ class RegisterViewModel @Inject constructor(
     sealed class RegistrationState {
         data object Idle : RegistrationState()
         data object Loading : RegistrationState()
-        data object Success : RegistrationState()
+        data class Success(val patient: Patient) : RegistrationState()
         data class Error(val message: String) : RegistrationState()
     }
 }

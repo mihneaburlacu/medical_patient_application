@@ -8,11 +8,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.new_medical_application.R
 import com.example.new_medical_application.databinding.FragmentRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
@@ -55,24 +58,24 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    //TODO: modify deprecated function
     private fun observeViewModel() {
-        lifecycleScope.launchWhenStarted {
-            viewModel.registrationState.collect { state ->
-                when (state) {
-                    is RegisterViewModel.RegistrationState.Idle -> {
-                    }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.registrationState.collect { state ->
+                    when (state) {
+                        is RegisterViewModel.RegistrationState.Idle -> {
+                        }
 
-                    is RegisterViewModel.RegistrationState.Loading -> {
-//                        Toast.makeText(context, "Registering...", Toast.LENGTH_SHORT).show()
-                    }
+                        is RegisterViewModel.RegistrationState.Loading -> {
+                        }
 
-                    is RegisterViewModel.RegistrationState.Success -> {
-                        findNavController().navigate(R.id.action_registerFragment_to_mainMenuFragment)
-                    }
+                        is RegisterViewModel.RegistrationState.Success -> {
+                            findNavController().navigate(R.id.action_registerFragment_to_mainMenuFragment)
+                        }
 
-                    is RegisterViewModel.RegistrationState.Error -> {
-                        Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
+                        is RegisterViewModel.RegistrationState.Error -> {
+                            Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
             }

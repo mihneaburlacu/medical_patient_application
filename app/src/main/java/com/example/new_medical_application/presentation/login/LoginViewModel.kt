@@ -42,6 +42,16 @@ class LoginViewModel @Inject constructor(
         _loginState.value = LoginState.Idle
     }
 
+    fun getAllPatients() {
+        viewModelScope.launch(Dispatchers.IO) {
+            patientUseCase.getAllPatients().collect {
+                it.forEach { patient ->
+                    Log.d("Mihnea123", patient.toString())
+                }
+            }
+        }
+    }
+
     sealed class LoginState {
         data object Idle : LoginState()
         data object Loading : LoginState()
