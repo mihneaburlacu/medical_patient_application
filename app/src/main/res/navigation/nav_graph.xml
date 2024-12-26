@@ -27,5 +27,13 @@
     <fragment
         android:id="@+id/mainMenuFragment"
         android:name="com.example.new_medical_application.presentation.menu.MainMenuFragment"
-        android:label="MainMenuFragment" />
+        android:label="MainMenuFragment" >
+        <action
+            android:id="@+id/action_mainMenuFragment_to_enterPhysiologicalDataFragment"
+            app:destination="@id/enterPhysiologicalDataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/enterPhysiologicalDataFragment"
+        android:name="com.example.new_medical_application.presentation.enterphysiologicaldata.EnterPhysiologicalDataFragment"
+        android:label="EnterPhysiologicalDataFragment" />
 </navigation>

@@ -4,9 +4,9 @@
         android:id="@+id/nav_home"
         android:title="@string/home_text"/>
 
-<!--    <item-->
-<!--        android:id="@+id/nav_values"-->
-<!--        android:title="@string/enter_daily_values_text" />-->
+    <item
+        android:id="@+id/nav_values"
+        android:title="@string/enter_daily_values_text" />
 
 <!--    <item-->
 <!--        android:id="@+id/nav_physiological_data"-->

@@ -6,7 +6,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.new_medical_application.R
@@ -39,23 +38,17 @@ class MainActivity: AppCompatActivity() {
     private fun setupNavigation() {
         drawerLayout = binding.drawerLayout
         navigationView = binding.navigationView
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment
-        navController = navHostFragment.navController
+        navController = (supportFragmentManager.findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment).navController
         actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
+
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
-
-
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(navigationView, navController)
+
         navigationView.setNavigationItemSelectedListener {
-            drawerLayout.open()
-            when(it.itemId) {
-                R.id.nav_home -> navController.navigate(R.id.mainMenuFragment)
-            }
-            it.isChecked = true
-            drawerLayout.closeDrawers()
+            setNavigationListener(it)
             true
         }
     }
@@ -65,5 +58,15 @@ class MainActivity: AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun setNavigationListener(item: MenuItem) {
+        drawerLayout.open()
+        when(item.itemId) {
+            R.id.nav_home -> navController.navigate(R.id.mainMenuFragment)
+            R.id.nav_values -> navController.navigate(R.id.enterPhysiologicalDataFragment)
+        }
+        item.isChecked = true
+        drawerLayout.closeDrawers()
     }
 }
