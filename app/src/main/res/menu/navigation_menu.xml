@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:title="@string/home_text"/>
+
+<!--    <item-->
+<!--        android:id="@+id/nav_values"-->
+<!--        android:title="@string/enter_daily_values_text" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/nav_physiological_data"-->
+<!--        android:title="@string/physiological_data_text" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/nav_contacts"-->
+<!--        android:title="@string/emergency_contacts_text" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/nav_caregiver"-->
+<!--        android:title="@string/caregiver_profile_text" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/nav_medical_data"-->
+<!--        android:title="@string/medical_data_fitbit" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/nav_medical_topics"-->
+<!--        android:title="@string/medical_topics_text" />-->
+</menu>

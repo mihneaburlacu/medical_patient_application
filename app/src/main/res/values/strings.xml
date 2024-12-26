@@ -13,4 +13,14 @@
     <string name="name_text">Name</string>
     <string name="phone_text">Phone number</string>
     <string name="fitbit_text">Fitbit ID</string>
+
+    <string name="home_text">Home</string>
+    <string name="enter_daily_values_text">Enter daily values</string>
+    <string name="physiological_data_text">Physiological data</string>
+    <string name="emergency_contacts_text">Emergency Contacts</string>
+    <string name="caregiver_profile_text">Caregiver profile</string>
+    <string name="medical_data_fitbit">Medical data</string>
+    <string name="medical_topics_text">Medical Topics</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
 </resources>
