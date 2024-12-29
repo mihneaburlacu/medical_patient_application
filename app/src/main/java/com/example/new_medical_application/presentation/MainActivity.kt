@@ -2,6 +2,7 @@ package com.example.new_medical_application.presentation
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
@@ -58,6 +59,18 @@ class MainActivity: AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+    
+    fun showNavigationDrawer() {
+        binding.navigationView.visibility = View.VISIBLE
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setHomeButtonEnabled(true)
+    }
+    
+    fun hideNavigationDrawer() {
+        binding.navigationView.visibility = View.GONE
+        supportActionBar?.setDisplayHomeAsUpEnabled(false);
+        supportActionBar?.setHomeButtonEnabled(false)
     }
 
     private fun setNavigationListener(item: MenuItem) {

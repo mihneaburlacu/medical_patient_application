@@ -1,7 +1,6 @@
 package com.example.new_medical_application.presentation.register
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +13,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.new_medical_application.R
 import com.example.new_medical_application.databinding.FragmentRegisterBinding
+import com.example.new_medical_application.presentation.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -27,6 +27,7 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
         observeViewModel()
+        setInvisibleNavigationDrawer()
     }
 
     override fun onCreateView(
@@ -80,5 +81,9 @@ class RegisterFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun setInvisibleNavigationDrawer() {
+        (requireActivity() as MainActivity).hideNavigationDrawer()
     }
 }

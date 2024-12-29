@@ -13,6 +13,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.new_medical_application.R
 import com.example.new_medical_application.databinding.FragmentLoginBinding
+import com.example.new_medical_application.presentation.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -26,6 +27,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
         observeViewModel()
+        setInvisibleNavigationDrawer()
     }
 
     override fun onCreateView(
@@ -78,5 +80,9 @@ class LoginFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun setInvisibleNavigationDrawer() {
+        (requireActivity() as MainActivity).hideNavigationDrawer()
     }
 }
