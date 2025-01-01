@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.new_medical_application.presentation.login.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="Login" >
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
@@ -19,21 +19,55 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.new_medical_application.presentation.register.RegisterFragment"
-        android:label="RegisterFragment" >
+        android:label="Register" >
         <action
             android:id="@+id/action_registerFragment_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/mainMenuFragment"
         android:name="com.example.new_medical_application.presentation.menu.MainMenuFragment"
-        android:label="MainMenuFragment" >
+        android:label="Main Menu" >
         <action
             android:id="@+id/action_mainMenuFragment_to_enterPhysiologicalDataFragment"
-            app:destination="@id/enterPhysiologicalDataFragment" />
+            app:destination="@id/enterDailyValuesFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_physiologicalDataFragment"
+            app:destination="@id/physiologicalDataFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_emergencyContactsFragment"
+            app:destination="@id/emergencyContactsFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_medicalTopicsFragment"
+            app:destination="@id/medicalTopicsFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_caretakerFragment"
+            app:destination="@id/caretakerFragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/enterPhysiologicalDataFragment"
-        android:name="com.example.new_medical_application.presentation.enterphysiologicaldata.EnterPhysiologicalDataFragment"
-        android:label="EnterPhysiologicalDataFragment" />
+        android:id="@+id/enterDailyValuesFragment"
+        android:name="com.example.new_medical_application.presentation.dailyvalues.EnterDailyValuesFragment"
+        android:label="Enter Daily Values" />
+
+    <fragment
+        android:id="@+id/physiologicalDataFragment"
+        android:name="com.example.new_medical_application.presentation.physiologicaldata.PhysiologicalDataFragment"
+        android:label="View Physiological Data" />
+
+    <fragment
+        android:id="@+id/emergencyContactsFragment"
+        android:name="com.example.new_medical_application.presentation.emergencycontacts.EmergencyContactsFragment"
+        android:label="Emergency contacts" />
+
+    <fragment
+        android:id="@+id/medicalTopicsFragment"
+        android:name="com.example.new_medical_application.presentation.medicaltopics.MedicalTopicsFragment"
+        android:label="Medical Topics" />
+
+    <fragment
+        android:id="@+id/caretakerFragment"
+        android:name="com.example.new_medical_application.presentation.caretaker.CaretakerFragment"
+        android:label="Caretaker Profile" />
 </navigation>

@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class MainActivity: AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
     private lateinit var navController: NavController
@@ -37,17 +37,7 @@ class MainActivity: AppCompatActivity() {
     }
 
     private fun setupNavigation() {
-        drawerLayout = binding.drawerLayout
-        navigationView = binding.navigationView
-        navController = (supportFragmentManager.findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment).navController
-        actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
-
-        drawerLayout.addDrawerListener(actionBarDrawerToggle)
-        actionBarDrawerToggle.syncState()
-        supportActionBar?.setDisplayHomeAsUpEnabled(true);
-        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
-        NavigationUI.setupWithNavController(navigationView, navController)
-
+        initializeNavigationComponents()
         navigationView.setNavigationItemSelectedListener {
             setNavigationListener(it)
             true
@@ -55,18 +45,19 @@ class MainActivity: AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(actionBarDrawerToggle.onOptionsItemSelected(item)) {
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true
         }
         return super.onOptionsItemSelected(item)
     }
-    
-    fun showNavigationDrawer() {
+
+    fun showNavigationDrawer(navId: Int) {
         binding.navigationView.visibility = View.VISIBLE
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
         supportActionBar?.setHomeButtonEnabled(true)
+        binding.navigationView.menu.findItem(navId).isChecked = true
     }
-    
+
     fun hideNavigationDrawer() {
         binding.navigationView.visibility = View.GONE
         supportActionBar?.setDisplayHomeAsUpEnabled(false);
@@ -75,11 +66,30 @@ class MainActivity: AppCompatActivity() {
 
     private fun setNavigationListener(item: MenuItem) {
         drawerLayout.open()
-        when(item.itemId) {
+        when (item.itemId) {
             R.id.nav_home -> navController.navigate(R.id.mainMenuFragment)
-            R.id.nav_values -> navController.navigate(R.id.enterPhysiologicalDataFragment)
+            R.id.nav_values -> navController.navigate(R.id.enterDailyValuesFragment)
+            R.id.nav_physiological_data -> navController.navigate(R.id.physiologicalDataFragment)
+            R.id.nav_contacts -> navController.navigate(R.id.emergencyContactsFragment)
+            R.id.nav_caregiver -> navController.navigate(R.id.caretakerFragment)
+            R.id.nav_medical_topics -> navController.navigate(R.id.medicalTopicsFragment)
         }
         item.isChecked = true
         drawerLayout.closeDrawers()
+    }
+
+    private fun initializeNavigationComponents() {
+        drawerLayout = binding.drawerLayout
+        navigationView = binding.navigationView
+        navController =
+            (supportFragmentManager.findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment).navController
+        actionBarDrawerToggle =
+            ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
+
+        drawerLayout.addDrawerListener(actionBarDrawerToggle)
+        actionBarDrawerToggle.syncState()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+        NavigationUI.setupWithNavController(navigationView, navController)
     }
 }
