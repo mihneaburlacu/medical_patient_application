@@ -64,6 +64,10 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(false)
     }
 
+    fun checkItemAfterNavigation(navId: Int) {
+        binding.navigationView.menu.findItem(navId).isChecked = true
+    }
+
     private fun setNavigationListener(item: MenuItem) {
         drawerLayout.open()
         when (item.itemId) {
