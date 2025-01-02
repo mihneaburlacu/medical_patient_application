@@ -9,7 +9,6 @@ data class MedicalData(
     var glucose: Int,
     var sbp: Int,
     var dbp: Int,
-    var sleepMinutes: Int,
     var temperature: Double,
     var hrv: Double,
     var date: Date,

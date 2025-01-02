@@ -5,6 +5,7 @@
 
     <dimen name="margin_vertical_between_elements">24dp</dimen>
     <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
     <dimen name="general_radius">16dp</dimen>
     <dimen name="general_elevation">16dp</dimen>
 
@@ -16,7 +17,11 @@
     <dimen name="margin_top_between_app_details_and_information">56dp</dimen>
     <dimen name="margin_between_inputs">16dp</dimen>
 
-<!--    Main Menu dimens-->
+    <!--    Main Menu dimens-->
     <dimen name="card_padding">16dp</dimen>
     <dimen name="margin_between_text_icon">4dp</dimen>
+
+    <!--    Daily values dimens-->
+    <dimen name="arrow_size">24dp</dimen>
+    <dimen name="margin_between_inputs_title">32dp</dimen>
 </resources>

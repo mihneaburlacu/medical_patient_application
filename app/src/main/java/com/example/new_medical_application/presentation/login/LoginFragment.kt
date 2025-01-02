@@ -28,6 +28,7 @@ class LoginFragment : Fragment() {
         setListeners()
         observeViewModel()
         setInvisibleNavigationDrawer()
+        viewModel.getAllPatients()
     }
 
     override fun onCreateView(

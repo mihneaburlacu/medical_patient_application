@@ -16,7 +16,6 @@ class MedicalDataEntity(
     var glucose: Int,
     var sbp: Int,
     var dbp: Int,
-    var sleepMinutes: Int,
     var temperature: Double,
     var hrv: Double,
     var date: Date,

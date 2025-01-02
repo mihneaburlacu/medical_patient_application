@@ -24,4 +24,19 @@
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
     <string name="services_text">Services</string>
+
+    <string name="today_text">TODAY</string>
+    <string name="hrv_hint_text">Enter HRV...</string>
+    <string name="spo2_hint_text">Enter spO2...</string>
+    <string name="sbb_hint_text">Enter SBP...</string>
+    <string name="dbp_hint_text">Enter DBP...</string>
+    <string name="hrv_text">Enter HRV:</string>
+    <string name="sbp_text">Enter SBP:</string>
+    <string name="spo2_text">Enter spO2:</string>
+    <string name="dbp_text">Enter DBP:</string>
+    <string name="temperature_text">Enter temperature:</string>
+    <string name="temperature_hint_text">Enter temp...</string>
+    <string name="glucose_text">Enter glucose:</string>
+    <string name="glucose_hint_text">Enter glucose...</string>
+    <string name="save_text">Save</string>
 </resources>
