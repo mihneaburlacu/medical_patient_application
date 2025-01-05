@@ -15,4 +15,7 @@ interface IPatientUseCase {
     //shared preference
     fun savePatientSharedPreference(patient: Patient)
     fun getSavedPatientSharedPreference(): Flow<Patient?>
+    fun saveWelcomeState(isShown: Boolean)
+    fun getWelcomeState(): Flow<Boolean>
+    fun clearWelcomeState()
 }

@@ -1,6 +1,5 @@
 package com.example.new_medical_application.presentation.menu
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.new_medical_application.R
@@ -19,9 +18,12 @@ class MainMenuViewModel @Inject constructor(
 ) : ViewModel() {
     private val _patient = MutableStateFlow<Patient?>(null)
     val patient: StateFlow<Patient?> = _patient
+    private val _isWelcomeMessageShown = MutableStateFlow(false)
+    val isWelcomeMessageShown: StateFlow<Boolean> = _isWelcomeMessageShown
 
     init {
         getSavedPatient()
+        loadWelcomeMessageFlag()
     }
 
     fun handleCardClick(cardType: CardType): Int {
@@ -31,6 +33,26 @@ class MainMenuViewModel @Inject constructor(
             CardType.EMERGENCY_CONTACTS -> R.id.emergencyContactsFragment
             CardType.CARETAKER -> R.id.caretakerFragment
             CardType.MEDICAL_TOPICS -> R.id.medicalTopicsFragment
+        }
+    }
+
+    fun clearWelcomeState() {
+        patientUseCase.clearWelcomeState()
+    }
+
+    fun setWelcomeMessage() {
+        val value = _isWelcomeMessageShown.value
+        viewModelScope.launch {
+            patientUseCase.saveWelcomeState(!value)
+            _isWelcomeMessageShown.value = !value
+        }
+    }
+
+    private fun loadWelcomeMessageFlag() {
+        viewModelScope.launch {
+            patientUseCase.getWelcomeState().collect {
+                _isWelcomeMessageShown.value = it
+            }
         }
     }
 

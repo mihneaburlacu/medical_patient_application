@@ -10,13 +10,16 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.new_medical_application.R
+import com.example.new_medical_application.data.local.SharedPreferencesHelper
 import com.example.new_medical_application.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
-
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    @Inject
+    lateinit var sharedPreferencesHelper: SharedPreferencesHelper
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
     private lateinit var navController: NavController
@@ -29,6 +32,11 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupNavigation()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        clearWelcomeState()
     }
 
     override fun onDestroy() {
@@ -95,5 +103,9 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(navigationView, navController)
+    }
+
+    private fun clearWelcomeState() {
+        sharedPreferencesHelper.setWelcomeMessageFlag(false)
     }
 }

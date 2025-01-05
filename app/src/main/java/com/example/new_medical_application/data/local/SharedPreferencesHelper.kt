@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import com.example.new_medical_application.business.model.Patient
 import com.example.new_medical_application.common.AppConstants.PREFS_NAME
 import com.example.new_medical_application.common.AppConstants.PREFS_PATIENT_KEY
+import com.example.new_medical_application.common.AppConstants.PREFS_WELCOME_KEY
 import com.google.gson.Gson
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -22,7 +23,6 @@ class SharedPreferencesHelper @Inject constructor(
     fun savePatient(patient: Patient) {
         val patientJson = gson.toJson(patient)
         sharedPreferences.edit().putString(PREFS_PATIENT_KEY, patientJson).apply()
-//        sharedPreferences.edit().putString(PREFS_PATIENT_KEY, patientJson).apply()
     }
 
     fun getPatient(): Patient? {
@@ -31,6 +31,18 @@ class SharedPreferencesHelper @Inject constructor(
     }
 
     fun clearPatient() {
+        sharedPreferences.edit().remove(PREFS_PATIENT_KEY).apply()
+    }
+
+    fun setWelcomeMessageFlag(isShown: Boolean) {
+        sharedPreferences.edit().putBoolean(PREFS_WELCOME_KEY, isShown).apply()
+    }
+
+    fun getWelcomeMessageFlag(): Boolean {
+        return sharedPreferences.getBoolean(PREFS_WELCOME_KEY, false)
+    }
+
+    fun clearWelcomeMessageFlag() {
         sharedPreferences.edit().remove(PREFS_PATIENT_KEY).apply()
     }
 }

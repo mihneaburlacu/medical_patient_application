@@ -51,7 +51,10 @@ class MainMenuFragment : Fragment() {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.patient.collect { patient ->
                     patient?.let {
-                        welcomePatient(it)
+                        if (!viewModel.isWelcomeMessageShown.value) {
+                            welcomePatient(it)
+                            viewModel.setWelcomeMessage()
+                        }
                     }
                 }
             }

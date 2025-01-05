@@ -1,6 +1,5 @@
 package com.example.new_medical_application.domain.usecases
 
-import android.util.Log
 import com.example.new_medical_application.business.model.Patient
 import com.example.new_medical_application.data.database.repos.IPatientRepository
 import com.example.new_medical_application.data.local.SharedPreferencesHelper
@@ -46,5 +45,17 @@ class PatientUseCaseImpl @Inject constructor(
 
     override fun getSavedPatientSharedPreference(): Flow<Patient?> = flow {
         emit(sharedPreferencesHelper.getPatient())
+    }
+
+    override fun saveWelcomeState(isShown: Boolean) {
+        sharedPreferencesHelper.setWelcomeMessageFlag(isShown)
+    }
+
+    override fun getWelcomeState(): Flow<Boolean> = flow {
+        emit(sharedPreferencesHelper.getWelcomeMessageFlag())
+    }
+
+    override fun clearWelcomeState() {
+        sharedPreferencesHelper.clearWelcomeMessageFlag()
     }
 }
