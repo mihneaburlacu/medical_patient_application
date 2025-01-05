@@ -9,6 +9,7 @@ import com.example.new_medical_application.data.database.repos.IMedicalDataRepos
 import com.example.new_medical_application.data.database.repos.IPatientRepository
 import com.example.new_medical_application.data.database.repos.MedicalDataRepositoryImpl
 import com.example.new_medical_application.data.database.repos.PatientRepositoryImpl
+import com.example.new_medical_application.data.local.SharedPreferencesHelper
 import com.example.new_medical_application.domain.usecases.IMedicalDataUseCase
 import com.example.new_medical_application.domain.usecases.IPatientUseCase
 import com.example.new_medical_application.domain.usecases.MedicalDataUseCaseImpl
@@ -50,8 +51,9 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun providePatientUseCase(
-        iPatientRepository: IPatientRepository
-    ): IPatientUseCase = PatientUseCaseImpl(iPatientRepository)
+        iPatientRepository: IPatientRepository,
+        sharedPreferencesHelper: SharedPreferencesHelper
+    ): IPatientUseCase = PatientUseCaseImpl(iPatientRepository, sharedPreferencesHelper)
 
     @Provides
     @Singleton

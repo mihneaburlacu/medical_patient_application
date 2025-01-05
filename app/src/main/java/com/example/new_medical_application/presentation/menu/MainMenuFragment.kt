@@ -6,11 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.new_medical_application.R
+import com.example.new_medical_application.business.model.Patient
 import com.example.new_medical_application.databinding.FragmentMainMenuBinding
 import com.example.new_medical_application.presentation.MainActivity
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class MainMenuFragment : Fragment() {
@@ -22,6 +29,7 @@ class MainMenuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         showNavigationDrawer()
         setupCardClickListeners()
+        observeViewModel()
     }
 
     override fun onCreateView(
@@ -36,6 +44,18 @@ class MainMenuFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun observeViewModel() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.patient.collect { patient ->
+                    patient?.let {
+                        welcomePatient(it)
+                    }
+                }
+            }
+        }
     }
 
     private fun showNavigationDrawer() {
@@ -71,5 +91,12 @@ class MainMenuFragment : Fragment() {
             navigateTo(viewModel.handleCardClick(MainMenuViewModel.CardType.MEDICAL_TOPICS))
             checkItemFromNavigationDrawer(R.id.nav_medical_topics)
         }
+    }
+
+    private fun welcomePatient(patient: Patient) {
+        Snackbar.make(
+            requireView(),
+            "Welcome back, ${patient.username}!", Snackbar.LENGTH_SHORT
+        ).show()
     }
 }

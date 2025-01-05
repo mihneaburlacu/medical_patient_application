@@ -30,6 +30,7 @@ class LoginViewModel @Inject constructor(
             _loginState.value = LoginState.Loading
             try {
                 patientUseCase.login(username, password).collect { patient ->
+                    patientUseCase.savePatientSharedPreference(patient)
                     _loginState.value = LoginState.Success(patient)
                 }
             } catch (e: Exception) {

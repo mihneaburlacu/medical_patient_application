@@ -51,6 +51,9 @@ dependencies {
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
 
+    //gson
+    implementation ("com.google.code.gson:gson:2.8.9")
+
     //Navigation Component
     val navVersion = "2.8.5"
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
