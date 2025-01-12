@@ -12,5 +12,5 @@ data class MedicalData(
     var temperature: Double,
     var hrv: Double,
     var date: Date,
-    var patientID: UUID
+    var patientID: Long
 )

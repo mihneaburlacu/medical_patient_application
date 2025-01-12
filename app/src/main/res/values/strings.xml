@@ -39,4 +39,7 @@
     <string name="glucose_text">Enter glucose:</string>
     <string name="glucose_hint_text">Enter glucose...</string>
     <string name="save_text">Save</string>
+    <string name="insertion_success">Data inserted successfully!</string>
+    <string name="insertion_failure">Failed to insert data. Please try again.</string>
+    <string name="insertion_fail_input">"Invalid input"</string>
 </resources>

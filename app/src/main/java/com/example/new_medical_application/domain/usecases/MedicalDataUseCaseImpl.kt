@@ -2,8 +2,10 @@ package com.example.new_medical_application.domain.usecases
 
 import com.example.new_medical_application.business.model.MedicalData
 import com.example.new_medical_application.data.database.repos.IMedicalDataRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -13,7 +15,7 @@ class MedicalDataUseCaseImpl @Inject constructor(
 ) : IMedicalDataUseCase {
     override fun insertMedicalData(medicalData: MedicalData): Flow<Long> = flow {
         emit(medicalDataRepository.insertMedicalData(medicalData))
-    }
+    }.flowOn(Dispatchers.IO)
 
     override fun insertMedicalDataList(list: List<MedicalData>): Flow<List<Long>> = flow {
         emit(medicalDataRepository.insertMedicalDataList(list))
