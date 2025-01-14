@@ -26,6 +26,10 @@ class PatientUseCaseImpl @Inject constructor(
         emit(patientRepository.login(username, password))
     }
 
+    override fun getPatientByUsername(username: String): Flow<List<Patient>> = flow {
+        emit(patientRepository.getPatientByUsername(username))
+    }
+
     override fun getPatient(id: Long): Flow<Patient> = flow {
         emit(patientRepository.getPatient(id))
     }

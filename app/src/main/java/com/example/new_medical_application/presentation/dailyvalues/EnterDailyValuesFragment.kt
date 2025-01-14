@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.new_medical_application.R
 import com.example.new_medical_application.business.model.MedicalData
+import com.example.new_medical_application.common.TextUtils.showSnackbar
 import com.example.new_medical_application.databinding.FragmentDailyValuesBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,9 +51,9 @@ class EnterDailyValuesFragment : Fragment() {
                 viewModel.insertionResult.collect { result ->
                     result?.let {
                         if (it) {
-                            showSnackbar(getString(R.string.insertion_success))
+                            showSnackbar(binding.root, getString(R.string.insertion_success))
                         } else {
-                            showSnackbar(getString(R.string.insertion_failure))
+                            showSnackbar(binding.root, getString(R.string.insertion_failure))
                         }
                     }
                 }
@@ -83,7 +84,7 @@ class EnterDailyValuesFragment : Fragment() {
 //        val formattedDate = dateFormat.format(Date())
 
         if (spO2 == null || glucose == null || sbp == null || dbp == null || temperature == null || hrv == null) {
-            showSnackbar(getString(R.string.insertion_fail_input))
+            showSnackbar(binding.root, getString(R.string.insertion_fail_input))
             return
         }
 
@@ -99,9 +100,5 @@ class EnterDailyValuesFragment : Fragment() {
                 viewModel.insertMedicalData(medicalData)
             }
         }
-    }
-
-    private fun showSnackbar(message: String) {
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 }

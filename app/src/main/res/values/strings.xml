@@ -41,5 +41,5 @@
     <string name="save_text">Save</string>
     <string name="insertion_success">Data inserted successfully!</string>
     <string name="insertion_failure">Failed to insert data. Please try again.</string>
-    <string name="insertion_fail_input">"Invalid input"</string>
+    <string name="insertion_fail_input">"Invalid input, please fill up all the inputs"</string>
 </resources>

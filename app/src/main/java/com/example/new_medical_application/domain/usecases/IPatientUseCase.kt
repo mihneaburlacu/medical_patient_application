@@ -8,6 +8,7 @@ interface IPatientUseCase {
     fun insertPatient(patient: Patient): Flow<Long>
     fun insertPatientList(patients: List<Patient>): Flow<List<Long>>
     fun login(username: String, password: String): Flow<Patient>
+    fun getPatientByUsername(username: String): Flow<List<Patient>>
     fun getPatient(id: Long): Flow<Patient>
     fun getAllPatients(): Flow<List<Patient>>
     fun deleteAllPatients(): Flow<Unit>

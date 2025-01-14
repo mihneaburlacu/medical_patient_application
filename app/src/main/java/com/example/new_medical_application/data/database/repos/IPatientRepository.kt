@@ -11,6 +11,8 @@ interface IPatientRepository {
 
     fun getPatient(id: Long): Patient
 
+    fun getPatientByUsername(username: String): List<Patient>
+
     fun getAllPatient(): List<Patient>
 
     fun deleteAllPatients()

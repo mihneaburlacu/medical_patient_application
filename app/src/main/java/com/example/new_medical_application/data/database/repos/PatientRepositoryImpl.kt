@@ -30,6 +30,12 @@ class PatientRepositoryImpl @Inject constructor(
         return patientDao.getPatientDataDetailsById(id).toDomain()
     }
 
+    override fun getPatientByUsername(username: String): List<Patient> {
+        return patientDao.getPatientDataDetailsByUsername(username).map {
+            it.toDomain()
+        }
+    }
+
     override fun getAllPatient(): List<Patient> {
         return patientDao.getAllPatients().map {
             it.toDomain()
