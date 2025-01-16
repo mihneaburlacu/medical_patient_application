@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.new_medical_application.business.model.Patient
 import com.example.new_medical_application.domain.usecases.IPatientUseCase
+import com.example.new_medical_application.presentation.register.RegisterViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,12 +30,20 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             _loginState.value = LoginState.Loading
             try {
-                patientUseCase.login(username, password).collect { patient ->
-                    patientUseCase.savePatientSharedPreference(patient)
-                    _loginState.value = LoginState.Success(patient)
+                patientUseCase.getPatientByUsername(username).collect { list ->
+                    if (list.isEmpty()) {
+                        _loginState.value = LoginState.Error(
+                            "The username does not exists, please try again"
+                        )
+                    } else {
+                        patientUseCase.login(username, password).collect { patient ->
+                            patientUseCase.savePatientSharedPreference(patient)
+                            _loginState.value = LoginState.Success(patient)
+                        }
+                    }
                 }
             } catch (e: Exception) {
-                _loginState.value = LoginState.Error("Login failed")
+                _loginState.value = LoginState.Error("The password is incorrect")
             }
         }
     }
