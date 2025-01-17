@@ -42,4 +42,14 @@
     <string name="insertion_success">Data inserted successfully!</string>
     <string name="insertion_failure">Failed to insert data. Please try again.</string>
     <string name="insertion_fail_input">"Invalid input, please fill up all the inputs"</string>
+
+    <string name="medical_data_title">See your medical data</string>
+    <string-array name="spinner_items">
+        <item>Heart rate variability</item>
+        <item>Systolic blood pressure</item>
+        <item>Diastolic blood pressure</item>
+        <item>Oxygen saturation</item>
+        <item>Temperature</item>
+        <item>Glucose</item>
+    </string-array>
 </resources>

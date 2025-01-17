@@ -52,7 +52,7 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
 
     //gson
-    implementation ("com.google.code.gson:gson:2.8.9")
+    implementation ("com.google.code.gson:gson:2.10.1")
 
     //Navigation Component
     val navVersion = "2.8.5"
@@ -66,6 +66,9 @@ dependencies {
     implementation("androidx.room:room-runtime:$roomVersion")
     kapt("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
+
+    //Charts:
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
     //test
     testImplementation("junit:junit:4.13.2")

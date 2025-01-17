@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.new_medical_application.domain.usecases.IMedicalDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -13,6 +15,12 @@ import javax.inject.Inject
 class PhysiologicalDataViewModel @Inject constructor(
     private val medicalDataUseCase: IMedicalDataUseCase
 ) : ViewModel() {
+    private val _spinnerItems = MutableStateFlow<List<String>>(emptyList())
+    val spinnerItems: StateFlow<List<String>> = _spinnerItems
+
+    init {
+        loadSpinnerItems()
+    }
     fun getAllMedicalData() {
         viewModelScope.launch(Dispatchers.IO) {
             medicalDataUseCase.getAll().collect() {
@@ -25,5 +33,16 @@ class PhysiologicalDataViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    private fun loadSpinnerItems() {
+        _spinnerItems.value = listOf(
+            "Heart rate variability",
+            "Systolic blood pressure",
+            "Diastolic blood pressure",
+            "Oxygen saturation",
+            "Temperature",
+            "Glucose"
+        )
     }
 }

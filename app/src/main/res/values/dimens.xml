@@ -24,4 +24,10 @@
     <!--    Daily values dimens-->
     <dimen name="arrow_size">24dp</dimen>
     <dimen name="margin_between_inputs_title">32dp</dimen>
+
+    <!--    Physiological Data-->
+    <dimen name="marker_text_size">14sp</dimen>
+
+    <dimen name="chart_height">400dp</dimen>
+
 </resources>
