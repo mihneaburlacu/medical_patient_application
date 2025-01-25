@@ -67,7 +67,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/horizontal_top_guideline" />
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/daily_card"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -100,9 +100,9 @@
                 android:text="@string/enter_daily_values_text"
                 android:textAppearance="@style/InformationTextBold" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/physiological_card"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -135,9 +135,9 @@
                 android:text="@string/physiological_data_text"
                 android:textAppearance="@style/InformationTextBold" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/emergency_contacts_card"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -170,9 +170,9 @@
                 android:text="@string/emergency_contacts_text"
                 android:textAppearance="@style/InformationTextBold" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/caretaker_card"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -205,9 +205,9 @@
                 android:text="@string/caregiver_profile_text"
                 android:textAppearance="@style/InformationTextBold" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/topics_card"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -239,6 +239,6 @@
                 android:text="@string/medical_topics_text"
                 android:textAppearance="@style/InformationTextBold" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
