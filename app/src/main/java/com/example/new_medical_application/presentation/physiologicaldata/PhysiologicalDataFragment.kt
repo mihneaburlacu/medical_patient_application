@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -18,6 +19,9 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.TimeZone
 
 @AndroidEntryPoint
 class PhysiologicalDataFragment : Fragment() {
@@ -26,21 +30,13 @@ class PhysiologicalDataFragment : Fragment() {
     private val viewModel: PhysiologicalDataViewModel by viewModels()
     private lateinit var chart: LineChart
 
-    //TODO Hardcoded data, remove later
-    private val dataPoints = listOf(
-        Pair(110f, "12.05.2025"),
-        Pair(120f, "13.05.2025"),
-        Pair(105f, "14.05.2025"),
-        Pair(108f, "15.05.2025"),
-        Pair(110f, "16.05.2025"),
-        Pair(104f, "17.05.2025")
-    )
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getAllMedicalData()
+        viewModel.showAllMedicalData()
         collectSpinnerItems()
         initialiseChart()
+        collectChartData()
+        setupSpinnerListener()
     }
 
     override fun onCreateView(
@@ -64,39 +60,12 @@ class PhysiologicalDataFragment : Fragment() {
         chart.description.isEnabled = false
         addMarkerView(requireContext())
         formatChartXAxis()
-        addDataForChart()
     }
 
     private fun formatChartXAxis() {
         val xAxis = chart.xAxis
         xAxis.granularity = 1f
         xAxis.position = com.github.mikephil.charting.components.XAxis.XAxisPosition.BOTTOM
-        xAxis.valueFormatter = IndexAxisValueFormatter(dataPoints.map { it.second })
-    }
-
-    private fun addDataForChart() {
-        val entries = dataPoints.mapIndexed { index, pair ->
-            Entry(index.toFloat(), pair.first)
-        }
-        val lineDataSet = LineDataSet(entries, "Temperature").apply {
-            color = resources.getColor(R.color.secondary_color, null)
-            valueTextColor = resources.getColor(R.color.black, null)
-            valueTextSize = 12f
-            setDrawValues(false)
-            setDrawCircles(true)
-            circleColors = listOf(resources.getColor(R.color.main_color))
-        }
-        val baselineEntries = dataPoints.indices.map { index ->
-            Entry(index.toFloat(), dataPoints.first().first)
-        }
-        val baselineDataSet = LineDataSet(baselineEntries, "Baseline").apply {
-            color = resources.getColor(R.color.baseline_color, null)
-            lineWidth = 2f
-            setDrawCircles(false)
-            setDrawValues(false)
-        }
-        chart.data = LineData(lineDataSet, baselineDataSet)
-        chart.invalidate()
     }
 
     private fun addMarkerView(context: Context) {
@@ -121,5 +90,71 @@ class PhysiologicalDataFragment : Fragment() {
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.medicalParametersSpinner.adapter = adapter
+    }
+
+    private fun collectChartData() {
+        lifecycleScope.launch {
+            viewModel.chartData.collect { chartData ->
+                updateChart(chartData)
+            }
+        }
+    }
+
+    private fun setupSpinnerListener() {
+        binding.medicalParametersSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    val selectedParameter = parent?.getItemAtPosition(position).toString()
+                    viewModel.updateChartData(selectedParameter)
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    // Do nothing
+                }
+            }
+    }
+
+    private fun updateChart(dataPoints: List<Pair<Float, String>>) {
+        val selectedParameterName = binding.medicalParametersSpinner.selectedItem.toString()
+        val formattedDates = formatDates(dataPoints)
+        val entries = dataPoints.mapIndexed { index, pair ->
+            Entry(index.toFloat(), pair.first)
+        }
+        val lineDataSet = LineDataSet(entries, selectedParameterName).apply {
+            color = resources.getColor(R.color.secondary_color, null)
+            valueTextColor = resources.getColor(R.color.black, null)
+            valueTextSize = 12f
+            setDrawValues(false)
+            setDrawCircles(true)
+            circleColors = listOf(resources.getColor(R.color.main_color))
+        }
+        val baselineEntries = dataPoints.indices.map { index ->
+            Entry(index.toFloat(), dataPoints.first().first)
+        }
+        val baselineDataSet = LineDataSet(baselineEntries, "Baseline").apply {
+            color = resources.getColor(R.color.baseline_color, null)
+            lineWidth = 2f
+            setDrawCircles(false)
+            setDrawValues(false)
+        }
+        chart.data = LineData(lineDataSet, baselineDataSet)
+        chart.xAxis.valueFormatter = IndexAxisValueFormatter(formattedDates)
+        chart.invalidate()
+    }
+
+    private fun formatDates(dataPoints: List<Pair<Float, String>>): List<String> {
+        val inputDateFormat = SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH)
+        inputDateFormat.timeZone = TimeZone.getTimeZone("GMT")
+        val dateFormat = SimpleDateFormat("MM-dd", Locale.ENGLISH)
+        dateFormat.timeZone = TimeZone.getTimeZone("GMT")
+        return dataPoints.map { dataPoint ->
+            val parsedDate = inputDateFormat.parse(dataPoint.second)
+            dateFormat.format(parsedDate ?: dataPoint.second)
+        }
     }
 }

@@ -1,7 +1,6 @@
 package com.example.new_medical_application.business.model
 
 import java.util.Date
-import java.util.UUID
 
 data class MedicalData(
     val id: Long,
