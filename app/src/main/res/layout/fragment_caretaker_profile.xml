@@ -1,6 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_top_guideline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_bottom_guideline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical_start_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical_end_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <TextView
+        android:id="@+id/menu_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/anton_regular"
+        android:text="@string/caregiver_profile_text"
+        android:textAllCaps="true"
+        android:textColor="@color/secondary_color"
+        android:textSize="@dimen/app_title_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_top_guideline" />
+
+    <ImageView
+        android:id="@+id/profile_icon"
+        android:layout_width="@dimen/image_size"
+        android:layout_height="@dimen/image_size"
+        android:layout_marginTop="@dimen/margin_vertical_between_elements"
+        android:contentDescription="@string/caregiver_profile_text"
+        android:src="@drawable/ic_caretaker_profile"
+        app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+        app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/menu_title" />
+
+    <TextView
+        android:id="@+id/name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_vertical_between_elements"
+        android:text="@string/caretaker_name_profile"
+        android:textAppearance="@style/FitbitInfoNameText"
+        android:textSize="@dimen/profile_name_text_size"
+        app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+        app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/profile_icon" />
+
+    <TextView
+        android:id="@+id/caregiver_simple_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/caregiver_simple_text"
+        android:textAppearance="@style/FitbitInfoNameText"
+        android:textColor="@color/dark_grey"
+        app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+        app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/name_text" />
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_vertical_between_elements"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/vertical_start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/caregiver_simple_text">
+
+        <ImageView
+            android:id="@+id/call_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_between_buttons"
+            android:contentDescription="@string/phone_text"
+            android:elevation="@dimen/general_elevation"
+            android:src="@drawable/ic_phone_caretaker" />
+
+        <ImageView
+            android:id="@+id/sms_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_between_buttons"
+            android:contentDescription="@string/phone_text"
+            android:elevation="@dimen/general_elevation"
+            android:src="@drawable/ic_sms_caretaker" />
+
+        <ImageView
+            android:id="@+id/chat_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/email_text"
+            android:elevation="@dimen/general_elevation"
+            android:src="@drawable/ic_email_caretaker" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/description_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_vertical_between_elements"
+        android:gravity="center"
+        android:text="@string/caretaker_description"
+        android:textAppearance="@style/FitbitInfoNameText"
+        app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+        app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/buttons" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/fitbit_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_vertical_between_elements"
+        android:elevation="@dimen/general_elevation"
+        app:cardCornerRadius="@dimen/general_radius"
+        app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+        app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/description_text">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/email_button"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:contentDescription="@string/email_text"
+                    android:src="@drawable/ic_email" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/email_caretaker_text"
+                    android:textAppearance="@style/FitbitInfoText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/phone_button"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:contentDescription="@string/phone_text"
+                    android:src="@drawable/ic_phone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phone_number_caretaker_text"
+                    android:textAppearance="@style/FitbitInfoText" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

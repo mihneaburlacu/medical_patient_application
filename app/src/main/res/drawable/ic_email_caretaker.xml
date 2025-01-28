@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/secondary_color"/>
+            <size android:width="64dp" android:height="64dp"/>
+        </shape>
+    </item>
+
+    <item android:drawable="@drawable/ic_email_foreground"
+        android:gravity="center"
+        android:width="42dp" android:height="42dp"/>
+</layer-list>

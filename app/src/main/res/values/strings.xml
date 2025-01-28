@@ -44,6 +44,12 @@
     <string name="insertion_fail_input">"Invalid input, please fill up all the inputs"</string>
 
     <string name="medical_data_title">See your medical data</string>
+    <string name="caretaker_name_profile">Roxana Dorobantu</string>
+    <string name="caregiver_simple_text">Caregiver</string>
+    <string name="caretaker_description">As your dedicated caretaker, I am here to provide compassionate support and assistance whenever you need it.</string>
+    <string name="phone_number_caretaker_text">0727455324</string>
+    <string name="email_caretaker_text">mihneasebastianburlacu@gmail.com</string>
+
     <string-array name="spinner_items">
         <item>Heart rate variability</item>
         <item>Systolic blood pressure</item>

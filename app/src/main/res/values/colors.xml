@@ -15,4 +15,5 @@
     <color name="baseline_color">#FF0000</color>
     <color name="primary_grey">#D1D3D4</color>
     <color name="fitbit_text_color">@color/black</color>
+    <color name="dark_grey">#5A5A5A</color>
 </resources>

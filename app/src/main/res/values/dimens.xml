@@ -25,11 +25,18 @@
     <dimen name="arrow_size">24dp</dimen>
     <dimen name="margin_between_inputs_title">32dp</dimen>
 
-    <!--    Physiological Data-->
+    <!--    Physiological Data dimens-->
     <dimen name="marker_text_size">14sp</dimen>
 
     <dimen name="chart_height">400dp</dimen>
     <dimen name="view_height">8dp</dimen>
     <dimen name="margin_between_fitbit_info">2dp</dimen>
+
+    <!--    Caretaker Profile dimens-->
+    <dimen name="profile_name_text_size">24sp</dimen>
+
+    <dimen name="image_size">96dp</dimen>
+    <dimen name="icon_size">24dp</dimen>
+    <dimen name="margin_between_buttons">32dp</dimen>
 
 </resources>
