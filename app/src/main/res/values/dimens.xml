@@ -29,5 +29,7 @@
     <dimen name="marker_text_size">14sp</dimen>
 
     <dimen name="chart_height">400dp</dimen>
+    <dimen name="view_height">8dp</dimen>
+    <dimen name="margin_between_fitbit_info">2dp</dimen>
 
 </resources>

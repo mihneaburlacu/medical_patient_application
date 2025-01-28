@@ -44,7 +44,7 @@
             app:layout_constraintTop_toBottomOf="@id/horizontal_top_guideline" />
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/chart_card"
+            android:id="@+id/fitbit_card"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_between_inputs_title"
@@ -54,6 +54,73 @@
             app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
             app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
             app:layout_constraintTop_toBottomOf="@id/text_title">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_small"
+                android:layout_marginVertical="@dimen/margin_medium"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/fitbit_text"
+                    android:src="@drawable/ic_fitbit_large" />
+
+                <TextView
+                    android:id="@+id/name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:layout_marginBottom="@dimen/margin_between_fitbit_info"
+                    android:text="Mihnea-Sebastian Burlacu"
+                    android:textAppearance="@style/FitbitInfoNameText" />
+
+                <TextView
+                    android:id="@+id/member_since_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_between_fitbit_info"
+                    android:text="Joined 2023-11-18"
+                    android:textAppearance="@style/FitbitInfoText" />
+
+                <TextView
+                    android:id="@+id/date_birth_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_between_fitbit_info"
+                    android:text="Date of birth 1947-11-18"
+                    android:textAppearance="@style/FitbitInfoText" />
+
+                <TextView
+                    android:id="@+id/height_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_between_fitbit_info"
+                    android:text="Height 175.0 cm"
+                    android:textAppearance="@style/FitbitInfoText" />
+
+                <TextView
+                    android:id="@+id/weight_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Weight 71.0 kg"
+                    android:textAppearance="@style/FitbitInfoText" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/chart_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_between_inputs_title"
+            android:layout_marginBottom="@dimen/margin_between_inputs"
+            android:elevation="@dimen/general_elevation"
+            app:cardCornerRadius="@dimen/general_radius"
+            app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+            app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+            app:layout_constraintTop_toBottomOf="@id/fitbit_card">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -85,6 +152,12 @@
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_height"
+            app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+            app:layout_constraintTop_toBottomOf="@id/chart_card" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

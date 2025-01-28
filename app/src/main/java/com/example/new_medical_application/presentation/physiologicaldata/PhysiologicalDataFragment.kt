@@ -1,8 +1,8 @@
 package com.example.new_medical_application.presentation.physiologicaldata
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +14,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.new_medical_application.R
+import com.example.new_medical_application.business.model.FitbitInfo
 import com.example.new_medical_application.databinding.FragmentPhysiologicalDataBinding
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
@@ -62,11 +63,20 @@ class PhysiologicalDataFragment : Fragment() {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.fitbitInfo.collect { fitbitInfo ->
                     fitbitInfo?.let {
-                        //TODO: show on UI
+                        setFitbitText(it)
                     }
                 }
             }
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setFitbitText(info: FitbitInfo) {
+        binding.nameText.text = info.fullName
+        binding.memberSinceText.text = "Joined ${info.memberSince}"
+        binding.dateBirthText.text = "Date of birth ${info.dateOfBirth}"
+        binding.heightText.text = "Height ${info.height}"
+        binding.weightText.text = "Weight ${info.weight}"
     }
 
     private fun initialiseChart() {

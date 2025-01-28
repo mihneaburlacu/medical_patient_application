@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="InformationText">
         <item name="android:textSize">@dimen/normal_text_size</item>
         <item name="android:textColor">@color/main_color</item>
@@ -7,5 +8,15 @@
 
     <style name="InformationTextBold" parent="InformationText">
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="FitbitInfoText">
+        <item name="android:textColor">@color/fitbit_text_color</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/marker_text_size</item>
+    </style>
+
+    <style name="FitbitInfoNameText" parent="FitbitInfoText">
+        <item name="android:textSize">@dimen/normal_text_size</item>
     </style>
 </resources>
