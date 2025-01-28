@@ -2,6 +2,7 @@ package com.example.new_medical_application.presentation.physiologicaldata
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,9 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.new_medical_application.R
 import com.example.new_medical_application.databinding.FragmentPhysiologicalDataBinding
 import com.github.mikephil.charting.charts.LineChart
@@ -37,6 +40,7 @@ class PhysiologicalDataFragment : Fragment() {
         initialiseChart()
         collectChartData()
         setupSpinnerListener()
+        observeFitbitInfo()
     }
 
     override fun onCreateView(
@@ -51,6 +55,18 @@ class PhysiologicalDataFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun observeFitbitInfo() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.fitbitInfo.collect { fitbitInfo ->
+                    fitbitInfo?.let {
+                        //TODO: show on UI
+                    }
+                }
+            }
+        }
     }
 
     private fun initialiseChart() {

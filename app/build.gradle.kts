@@ -70,6 +70,11 @@ dependencies {
     //Charts:
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
+    //Retrofit:
+    val retrofitVersion = "2.9.0"
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+
     //test
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")

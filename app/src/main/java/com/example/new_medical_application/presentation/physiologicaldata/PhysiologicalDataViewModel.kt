@@ -3,7 +3,9 @@ package com.example.new_medical_application.presentation.physiologicaldata
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.new_medical_application.business.model.FitbitInfo
 import com.example.new_medical_application.business.model.MedicalData
+import com.example.new_medical_application.domain.repositoryapi.IFitbitRepository
 import com.example.new_medical_application.domain.usecases.IMedicalDataUseCase
 import com.example.new_medical_application.domain.usecases.IPatientUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class PhysiologicalDataViewModel @Inject constructor(
     private val medicalDataUseCase: IMedicalDataUseCase,
-    private val patientUseCase: IPatientUseCase
+    private val patientUseCase: IPatientUseCase,
+    private val fitbitRepository: IFitbitRepository
 ) : ViewModel() {
     private val _spinnerItems = MutableStateFlow<List<String>>(emptyList())
     val spinnerItems: StateFlow<List<String>> = _spinnerItems
@@ -24,11 +27,15 @@ class PhysiologicalDataViewModel @Inject constructor(
     private val _chartData = MutableStateFlow<List<Pair<Float, String>>>(emptyList())
     val chartData: StateFlow<List<Pair<Float, String>>> = _chartData
 
+    private val _fitbitInfo = MutableStateFlow<FitbitInfo?>(null)
+    val fitbitInfo: StateFlow<FitbitInfo?> get() = _fitbitInfo
+
     private var medicalDataList: List<MedicalData> = emptyList()
 
     init {
         loadSpinnerItems()
         getAllMedicalData()
+        fetchFitbitInfo()
     }
 
     fun showAllMedicalData() {
@@ -41,6 +48,18 @@ class PhysiologicalDataViewModel @Inject constructor(
                 it.forEach { data ->
                     Log.d("Mihnea123", data.toString())
                 }
+            }
+        }
+    }
+
+    private fun fetchFitbitInfo() {
+        viewModelScope.launch {
+            try {
+                val data = fitbitRepository.getFitbitInfo()
+                _fitbitInfo.value = data
+            } catch (e: Exception) {
+                Log.d("Mihnea123", "Exception in vm: $e")
+                e.printStackTrace()
             }
         }
     }

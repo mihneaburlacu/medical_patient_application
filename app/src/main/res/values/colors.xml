@@ -13,4 +13,5 @@
     <color name="input_background">#f4f4f4</color>
     <color name="input_text">#959595</color>
     <color name="baseline_color">#FF0000</color>
+    <color name="primary_grey">#D1D3D4</color>
 </resources>
