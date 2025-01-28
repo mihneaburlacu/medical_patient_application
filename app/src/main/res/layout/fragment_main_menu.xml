@@ -91,6 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_between_text_icon"
+                android:contentDescription="@string/enter_daily_values_text"
                 android:src="@drawable/ic_daily" />
 
             <TextView
@@ -126,6 +127,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_between_text_icon"
+                android:contentDescription="@string/physiological_data_text"
                 android:src="@drawable/ic_physiological_data" />
 
             <TextView
@@ -161,6 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_between_text_icon"
+                android:contentDescription="@string/emergency_contacts_text"
                 android:src="@drawable/ic_emergency_contacts" />
 
             <TextView
@@ -196,6 +199,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_between_text_icon"
+                android:contentDescription="@string/caregiver_profile_text"
                 android:src="@drawable/ic_caretaker" />
 
             <TextView
@@ -230,6 +234,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_between_text_icon"
+                android:contentDescription="@string/medical_topics_text"
                 android:src="@drawable/ic_book" />
 
             <TextView

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -74,39 +75,39 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_medium"
                     android:layout_marginBottom="@dimen/margin_between_fitbit_info"
-                    android:text="Mihnea-Sebastian Burlacu"
-                    android:textAppearance="@style/FitbitInfoNameText" />
+                    android:textAppearance="@style/FitbitInfoNameText"
+                    tools:text="Mihnea-Sebastian Burlacu" />
 
                 <TextView
                     android:id="@+id/member_since_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/margin_between_fitbit_info"
-                    android:text="Joined 2023-11-18"
-                    android:textAppearance="@style/FitbitInfoText" />
+                    android:textAppearance="@style/FitbitInfoText"
+                    tools:text="Joined 2023-11-18" />
 
                 <TextView
                     android:id="@+id/date_birth_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/margin_between_fitbit_info"
-                    android:text="Date of birth 1947-11-18"
-                    android:textAppearance="@style/FitbitInfoText" />
+                    android:textAppearance="@style/FitbitInfoText"
+                    tools:text="Date of birth 1947-11-18" />
 
                 <TextView
                     android:id="@+id/height_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/margin_between_fitbit_info"
-                    android:text="Height 175.0 cm"
-                    android:textAppearance="@style/FitbitInfoText" />
+                    android:textAppearance="@style/FitbitInfoText"
+                    tools:text="Height 175.0 cm" />
 
                 <TextView
                     android:id="@+id/weight_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Weight 71.0 kg"
-                    android:textAppearance="@style/FitbitInfoText" />
+                    android:textAppearance="@style/FitbitInfoText"
+                    tools:text="Weight 71.0 kg" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
