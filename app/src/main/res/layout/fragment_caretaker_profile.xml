@@ -109,7 +109,7 @@
             android:src="@drawable/ic_sms_caretaker" />
 
         <ImageView
-            android:id="@+id/chat_button"
+            android:id="@+id/email_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/email_text"
@@ -154,7 +154,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/email_button"
+                    android:id="@+id/email_icon"
                     android:layout_width="@dimen/icon_size"
                     android:layout_height="@dimen/icon_size"
                     android:layout_gravity="center"
@@ -177,7 +177,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/phone_button"
+                    android:id="@+id/phone_icon"
                     android:layout_width="@dimen/icon_size"
                     android:layout_height="@dimen/icon_size"
                     android:layout_gravity="center"
