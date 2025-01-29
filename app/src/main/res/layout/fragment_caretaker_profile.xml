@@ -161,7 +161,7 @@
                     android:layout_marginStart="@dimen/margin_small"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:contentDescription="@string/email_text"
-                    android:src="@drawable/ic_email" />
+                    android:src="@drawable/ic_email_black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -184,7 +184,7 @@
                     android:layout_marginStart="@dimen/margin_small"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:contentDescription="@string/phone_text"
-                    android:src="@drawable/ic_phone" />
+                    android:src="@drawable/ic_phone_black" />
 
                 <TextView
                     android:layout_width="wrap_content"
