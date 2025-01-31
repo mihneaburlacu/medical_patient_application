@@ -68,6 +68,11 @@ class PhysiologicalDataFragment : Fragment() {
                 }
             }
         }
+        lifecycleScope.launch {
+            viewModel.loading.collect {
+                binding.progressBar.visibility = if(it) View.VISIBLE else View.GONE
+            }
+        }
     }
 
     @SuppressLint("SetTextI18n")

@@ -12,6 +12,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,6 +30,9 @@ class PhysiologicalDataViewModel @Inject constructor(
 
     private val _fitbitInfo = MutableStateFlow<FitbitInfo?>(null)
     val fitbitInfo: StateFlow<FitbitInfo?> get() = _fitbitInfo
+
+    private val _loading = MutableStateFlow(true)
+    val loading: StateFlow<Boolean> = _loading.asStateFlow()
 
     private var medicalDataList: List<MedicalData> = emptyList()
 
@@ -60,6 +64,8 @@ class PhysiologicalDataViewModel @Inject constructor(
             } catch (e: Exception) {
                 Log.d("Mihnea123", "Exception in vm: $e")
                 e.printStackTrace()
+            } finally {
+                _loading.value = false
             }
         }
     }
