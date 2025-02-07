@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/margin_medium">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/topic_card_view"
@@ -13,18 +14,22 @@
         android:background="@drawable/ripple_card_background"
         android:clickable="true"
         android:focusable="true"
+        android:outlineSpotShadowColor="@color/white"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/general_radius"
         app:cardElevation="@dimen/general_elevation">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/margin_medium">
 
             <TextView
                 android:id="@+id/number_topic_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/margin_small"
                 android:background="@drawable/sh_number_topic"
                 android:gravity="center"
                 android:textAppearance="@style/NumberTextSize"
@@ -35,8 +40,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:textAppearance="@style/FitbitInfoText"
-                tools:text="Medical topic" />
+                tools:text="Medical topic is too long to fit into the bar" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

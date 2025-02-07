@@ -20,7 +20,7 @@ class MedicalTopicsFragment : Fragment() {
 
     private val topics = listOf(
         MedicalTopic("100", "Increase spo2"),
-        MedicalTopic("300", "Decrease the chance of falling")
+        MedicalTopic("300", "Decrease the chance of falling when you want to dance with me around")
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

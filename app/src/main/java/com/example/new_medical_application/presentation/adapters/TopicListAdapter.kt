@@ -25,7 +25,7 @@ class TopicListAdapter(private val topicList: List<MedicalTopic>) :
     override fun getItemCount() = topicList.size
 
     override fun onBindViewHolder(holder: TopicViewHolder, position: Int) {
-        holder.numberText.text = position.toString()
+        holder.numberText.text = (position + 1).toString()
         holder.titleText.text = topicList[position].title
     }
 }
