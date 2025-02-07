@@ -19,4 +19,8 @@
     <style name="FitbitInfoNameText" parent="FitbitInfoText">
         <item name="android:textSize">@dimen/normal_text_size</item>
     </style>
+
+    <style name="NumberTextSize" parent="FitbitInfoText">
+        <item name="android:textSize">8sp</item>
+    </style>
 </resources>
