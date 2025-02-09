@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_top_guideline"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_start_guideline"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_end_guideline"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/anton_regular"
+            android:text="@string/medical_topics_text"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/secondary_color"
+            android:textSize="@dimen/app_title_size"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+            app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+            app:layout_constraintTop_toBottomOf="@id/horizontal_top_guideline"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/text_topic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_bottom_size"
+            android:textAppearance="@style/FitbitInfoText"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+            app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+            app:layout_constraintTop_toBottomOf="@id/text_title"
+            tools:visibility="visible" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/margin_vertical_between_elements"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+            app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+            app:layout_constraintTop_toBottomOf="@id/text_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

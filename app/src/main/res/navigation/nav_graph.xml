@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.new_medical_application.presentation.login.LoginFragment"
-        android:label="Login" >
+        android:label="Login">
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.new_medical_application.presentation.register.RegisterFragment"
-        android:label="Register" >
+        android:label="Register">
         <action
             android:id="@+id/action_registerFragment_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/mainMenuFragment"
         android:name="com.example.new_medical_application.presentation.menu.MainMenuFragment"
-        android:label="Main Menu" >
+        android:label="Main Menu">
         <action
             android:id="@+id/action_mainMenuFragment_to_enterPhysiologicalDataFragment"
             app:destination="@id/enterDailyValuesFragment" />
@@ -64,10 +64,20 @@
     <fragment
         android:id="@+id/medicalTopicsFragment"
         android:name="com.example.new_medical_application.presentation.medicaltopics.MedicalTopicsFragment"
-        android:label="Medical Topics" />
+        android:label="Medical Topics">
+        <action
+            android:id="@+id/action_medicalTopicsFragment_to_specificTopicFragment"
+            app:destination="@id/specificTopicFragment">
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/caretakerFragment"
         android:name="com.example.new_medical_application.presentation.caretaker.CaretakerFragment"
         android:label="Caretaker Profile" />
+
+    <fragment
+        android:id="@+id/specificTopicFragment"
+        android:name="com.example.new_medical_application.presentation.medicaltopics.SpecificTopicFragment"
+        android:label="Medical Topic" />
 </navigation>

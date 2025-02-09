@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.new_medical_application.business.model.MedicalTopic
+import com.example.new_medical_application.R
 import com.example.new_medical_application.common.TextUtils.showSnackbar
 import com.example.new_medical_application.databinding.FragmentMedicalTopicsBinding
 import com.example.new_medical_application.presentation.adapters.TopicListAdapter
@@ -23,11 +24,6 @@ class MedicalTopicsFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: MedicalTopicsViewModel by viewModels()
     private lateinit var recyclerView: RecyclerView
-
-    private val topics = listOf(
-        MedicalTopic("100", "Increase spo2"),
-        MedicalTopic("300", "Decrease the chance of falling when you want to dance with me around")
-    )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -57,9 +53,10 @@ class MedicalTopicsFragment : Fragment() {
 
     private fun collectMedicalTopics() {
         lifecycleScope.launch {
-            viewModel.medicalTopics.collectLatest { topics ->
-                recyclerView.adapter = TopicListAdapter(topics)
-                binding.progressBar.visibility = View.GONE
+            viewModel.medicalTopics.collect { topics ->
+                recyclerView.adapter = TopicListAdapter(topics) {
+                    navigateToTopicDetail(it)
+                }
             }
         }
     }
@@ -76,6 +73,21 @@ class MedicalTopicsFragment : Fragment() {
                     showSnackbar(binding.root, error)
                 }
             }
+        }
+    }
+
+    private fun navigateToTopicDetail(topicId: String) {
+        if (isAdded) {
+            activity?.runOnUiThread {
+                val bundle = Bundle().apply {
+                    putString("topicId", topicId)
+                }
+                findNavController().navigate(
+                    R.id.action_medicalTopicsFragment_to_specificTopicFragment,
+                    bundle
+                )
+            }
+
         }
     }
 }

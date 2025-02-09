@@ -41,5 +41,6 @@
 
     <!--    Medical Topic Fragment-->
     <dimen name="number_icon_size">16dp</dimen>
+    <dimen name="margin_bottom_size">32dp</dimen>
 
 </resources>
