@@ -1,6 +1,7 @@
 package com.example.new_medical_application.presentation
 
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -56,7 +57,21 @@ class MainActivity : AppCompatActivity() {
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true
         }
+        when(item.itemId) {
+            R.id.action_login -> navController.navigate(R.id.loginFragment)
+        }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onPrepareOptionsMenu(menu: android.view.Menu?): kotlin.Boolean {
+        val menuItem = menu?.findItem(R.id.action_login)
+        menuItem?.isVisible = navController.currentDestination?.id != R.id.loginFragment
+        return super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.actionbar_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     fun showNavigationDrawer(navId: Int) {
@@ -98,12 +113,14 @@ class MainActivity : AppCompatActivity() {
             (supportFragmentManager.findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment).navController
         actionBarDrawerToggle =
             ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
-
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(navigationView, navController)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            invalidateOptionsMenu()
+        }
     }
 
     private fun clearWelcomeState() {
