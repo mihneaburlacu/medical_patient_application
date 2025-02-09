@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity() {
 
     fun showNavigationDrawer(navId: Int) {
         binding.navigationView.visibility = View.VISIBLE
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu_bar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
         supportActionBar?.setHomeButtonEnabled(true)
         binding.navigationView.menu.findItem(navId).isChecked = true
