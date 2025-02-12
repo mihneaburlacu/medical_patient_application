@@ -5,11 +5,15 @@ import androidx.room.Room
 import com.example.new_medical_application.data.database.AppDatabase
 import com.example.new_medical_application.data.database.model.MedicalDataDao
 import com.example.new_medical_application.data.database.model.PatientDao
+import com.example.new_medical_application.data.database.repos.EmergencyContactRepositoryImpl
+import com.example.new_medical_application.data.database.repos.IEmergencyContactRepository
 import com.example.new_medical_application.data.database.repos.IMedicalDataRepository
 import com.example.new_medical_application.data.database.repos.IPatientRepository
 import com.example.new_medical_application.data.database.repos.MedicalDataRepositoryImpl
 import com.example.new_medical_application.data.database.repos.PatientRepositoryImpl
 import com.example.new_medical_application.data.local.SharedPreferencesHelper
+import com.example.new_medical_application.domain.usecases.EmergencyContactUseCaseImpl
+import com.example.new_medical_application.domain.usecases.IEmergencyContactUseCase
 import com.example.new_medical_application.domain.usecases.IMedicalDataUseCase
 import com.example.new_medical_application.domain.usecases.IPatientUseCase
 import com.example.new_medical_application.domain.usecases.MedicalDataUseCaseImpl
@@ -50,6 +54,12 @@ object DatabaseModule {
 
     @Provides
     @Singleton
+    fun provideEmergencyContactRepository(
+
+    ): IEmergencyContactRepository = EmergencyContactRepositoryImpl()
+
+    @Provides
+    @Singleton
     fun providePatientUseCase(
         iPatientRepository: IPatientRepository,
         sharedPreferencesHelper: SharedPreferencesHelper
@@ -60,6 +70,12 @@ object DatabaseModule {
     fun provideMedicalDataUseCase(
         iMedicalDataRepository: IMedicalDataRepository
     ): IMedicalDataUseCase = MedicalDataUseCaseImpl(iMedicalDataRepository)
+
+    @Provides
+    @Singleton
+    fun provideEmergencyContactUseCase(
+        iEmergencyContactRepository: IEmergencyContactRepository
+    ): IEmergencyContactUseCase = EmergencyContactUseCaseImpl(iEmergencyContactRepository)
 
     @Provides
     @Singleton

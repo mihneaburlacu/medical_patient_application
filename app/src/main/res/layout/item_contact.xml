@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/margin_medium">
+    android:paddingBottom="@dimen/margin_medium">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/contact_info_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:elevation="@dimen/general_elevation"
         android:focusable="true"
-        android:outlineSpotShadowColor="@color/white"
+        android:outlineSpotShadowColor="@color/input_background"
         app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="@dimen/general_radius">
+        app:cardCornerRadius="@dimen/general_radius"
+        app:cardElevation="@dimen/general_elevation">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

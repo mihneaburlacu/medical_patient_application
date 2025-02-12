@@ -1,5 +1,6 @@
 package com.example.new_medical_application.presentation.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import com.example.new_medical_application.business.model.EmergencyContact
 import com.google.android.material.card.MaterialCardView
 
 class ContactListAdapter(
-    private val contactList: List<EmergencyContact>,
+    private var contactList: List<EmergencyContact>,
     private val onTopicClick: (String) -> Unit
 ) : RecyclerView.Adapter<ContactListAdapter.ContactViewHolder>() {
 
@@ -41,5 +42,11 @@ class ContactListAdapter(
         holder.emailText.text = contact.email
         holder.phoneText.text = contact.phoneNumber
         holder.bind(contact.phoneNumber)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateList(newList: List<EmergencyContact>) {
+        contactList = newList
+        notifyDataSetChanged()
     }
 }
