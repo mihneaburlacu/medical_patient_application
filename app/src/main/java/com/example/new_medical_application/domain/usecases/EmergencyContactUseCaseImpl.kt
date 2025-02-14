@@ -9,7 +9,8 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Singleton
 
 @Singleton
-class EmergencyContactUseCaseImpl(emergencyContactRepository: IEmergencyContactRepository) : IEmergencyContactUseCase {
+class EmergencyContactUseCaseImpl(emergencyContactRepository: IEmergencyContactRepository) :
+    IEmergencyContactUseCase {
     private var emergencyList = mutableListOf(
         EmergencyContact(
             1,
@@ -18,8 +19,9 @@ class EmergencyContactUseCaseImpl(emergencyContactRepository: IEmergencyContactR
             "mihneasebastianburlacu@gmail.com",
             1
         ),
-        EmergencyContact(2, "Roxana Dorobantu", "0727455324", "roxanadorobantu64@gmail.com", 1)
-    )
+        EmergencyContact(2, "Roxana Dorobantu", "0727455324", "roxanadorobantu64@gmail.com", 1),
+
+        )
 
     override fun insertContact(contact: EmergencyContact): Flow<Long> = flow {
         emergencyList.add(contact)
@@ -32,5 +34,9 @@ class EmergencyContactUseCaseImpl(emergencyContactRepository: IEmergencyContactR
 
     override fun getByPatientId(patientId: Long): Flow<List<EmergencyContact>> = flow {
         emit(emergencyList)
+    }
+
+    override fun deleteById(id: Long) {
+        emergencyList = emergencyList.filterNot { it.id == id }.toMutableList()
     }
 }

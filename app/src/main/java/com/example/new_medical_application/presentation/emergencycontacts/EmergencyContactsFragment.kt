@@ -9,11 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.new_medical_application.business.model.EmergencyContact
-import com.example.new_medical_application.common.TextUtils.showSnackbar
 import com.example.new_medical_application.databinding.FragmentEmergencyContactsBinding
 import com.example.new_medical_application.presentation.adapters.ContactListAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -27,7 +26,7 @@ class EmergencyContactsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initialiseRecyclerView()
-        setupSaveButton()
+        setupAddButton()
         observeViewModel()
     }
 
@@ -48,9 +47,14 @@ class EmergencyContactsFragment : Fragment() {
     private fun initialiseRecyclerView() {
         recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        contactAdapter = ContactListAdapter(emptyList()) { phoneNumber ->
+        contactAdapter = ContactListAdapter(
+            emptyList(),
+            onTopicClick = { phoneNumber ->
 
-        }
+            },
+            onButtonClick = { id ->
+                viewModel.deleteEmergencyContact(id)
+            })
         recyclerView.adapter = contactAdapter
     }
 
@@ -62,25 +66,18 @@ class EmergencyContactsFragment : Fragment() {
         }
     }
 
-    private fun setupSaveButton() {
-        binding.saveButton.setOnClickListener {
-            val name = binding.nameInput.editText?.text.toString()
-            val phone = binding.phoneInput.editText?.text.toString()
-            val email = binding.emailInput.editText?.text.toString()
-
-            if (name.isNotEmpty() && phone.isNotEmpty() && email.isNotEmpty()) {
-                val newContact = EmergencyContact(5, name, phone, email, 1)
-                viewModel.addEmergencyContact(newContact)
-                clearInputs()
-            } else {
-                showSnackbar(binding.root, "All fields are required!")
-            }
+    private fun setupAddButton() {
+        binding.addContactButton.setOnClickListener {
+            val addContactDialog = AddContactDialog(viewModel)
+            addContactDialog.show(parentFragmentManager, "AddContactDialog")
+            refreshEmergencyList()
         }
     }
 
-    private fun clearInputs() {
-        binding.nameInput.editText?.text?.clear()
-        binding.phoneInput.editText?.text?.clear()
-        binding.emailInput.editText?.text?.clear()
+    private fun refreshEmergencyList() {
+        lifecycleScope.launch {
+            delay(10)
+        }
+        observeViewModel()
     }
 }

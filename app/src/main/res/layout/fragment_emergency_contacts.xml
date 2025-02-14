@@ -1,197 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_top_guideline"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/horizontal_top_guideline"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.05" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_bottom_guideline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.92" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/vertical_start_guideline"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.05" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical_start_guideline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/vertical_middle_guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical_middle_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/vertical_end_guideline"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.95" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical_end_guideline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
 
-        <TextView
-            android:id="@+id/text_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/anton_regular"
-            android:text="@string/contacts_text"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:textColor="@color/secondary_color"
-            android:textSize="@dimen/app_title_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
-            app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:fontFamily="@font/anton_regular"
+        android:text="@string/contacts_text"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/secondary_color"
+        android:textSize="@dimen/app_title_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+        app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/name_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_between_inputs_title"
-            android:text="@string/enter_name"
-            android:textAppearance="@style/InformationTextBold"
-            app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
-            app:layout_constraintTop_toBottomOf="@id/text_title" />
+    <TextView
+        android:id="@+id/list_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_vertical_between_elements"
+        android:text="@string/contact_list_text"
+        android:textAppearance="@style/InformationTextBold"
+        app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/text_title" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/name_input"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_small"
-            app:boxBackgroundMode="filled"
-            app:boxCornerRadiusBottomEnd="@dimen/general_radius"
-            app:boxCornerRadiusBottomStart="@dimen/general_radius"
-            app:boxCornerRadiusTopEnd="@dimen/general_radius"
-            app:boxCornerRadiusTopStart="@dimen/general_radius"
-            app:boxStrokeColor="@android:color/transparent"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            app:layout_constraintEnd_toStartOf="@id/vertical_middle_guideline"
-            app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
-            app:layout_constraintTop_toBottomOf="@id/name_text">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_small"
+        app:layout_constraintBottom_toTopOf="@id/horizontal_bottom_guideline"
+        app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+        app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/list_text" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/enter_name_input"
-                android:inputType="text"
-                android:textColor="@color/black"
-                android:textColorHint="@color/input_text" />
-        </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_contact_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/add_contact_bottom_margin"
+        android:clickable="true"
+        android:contentDescription="@string/emergency_contacts_text"
+        android:focusable="true"
+        android:src="@drawable/ic_add"
+        android:tintMode="screen"
+        app:backgroundTint="@color/main_color"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/email_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_vertical_between_elements"
-            android:text="@string/enter_email_text"
-            android:textAppearance="@style/InformationTextBold"
-            app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
-            app:layout_constraintTop_toBottomOf="@id/name_input" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/email_input"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_small"
-            app:boxBackgroundMode="filled"
-            app:boxCornerRadiusBottomEnd="@dimen/general_radius"
-            app:boxCornerRadiusBottomStart="@dimen/general_radius"
-            app:boxCornerRadiusTopEnd="@dimen/general_radius"
-            app:boxCornerRadiusTopStart="@dimen/general_radius"
-            app:boxStrokeColor="@android:color/transparent"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
-            app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
-            app:layout_constraintTop_toBottomOf="@id/email_text">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/enter_email_input"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/black"
-                android:textColorHint="@color/input_text" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/phone_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_between_inputs_title"
-            android:text="@string/enter_number_text"
-            android:textAppearance="@style/InformationTextBold"
-            app:layout_constraintStart_toEndOf="@id/vertical_middle_guideline"
-            app:layout_constraintTop_toBottomOf="@id/text_title" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phone_input"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_small"
-            app:boxBackgroundMode="filled"
-            app:boxCornerRadiusBottomEnd="@dimen/general_radius"
-            app:boxCornerRadiusBottomStart="@dimen/general_radius"
-            app:boxCornerRadiusTopEnd="@dimen/general_radius"
-            app:boxCornerRadiusTopStart="@dimen/general_radius"
-            app:boxStrokeColor="@android:color/transparent"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
-            app:layout_constraintStart_toEndOf="@id/vertical_middle_guideline"
-            app:layout_constraintTop_toBottomOf="@id/phone_text">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/enter_number_input"
-                android:inputType="number"
-                android:textColor="@color/black"
-                android:textColorHint="@color/input_text" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/save_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_small"
-            android:layout_marginTop="@dimen/margin_between_inputs_title"
-            android:background="@drawable/sh_login_button"
-            android:text="@string/save_text"
-            android:textColor="@color/white"
-            android:textSize="@dimen/normal_text_size"
-            app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
-            app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
-            app:layout_constraintTop_toBottomOf="@id/email_input" />
-
-        <TextView
-            android:id="@+id/list_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_between_inputs_title"
-            android:text="@string/contact_list_text"
-            android:textAppearance="@style/InformationTextBold"
-            app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
-            app:layout_constraintTop_toBottomOf="@id/save_button" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
-            app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
-            app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
-            app:layout_constraintTop_toBottomOf="@id/list_text" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

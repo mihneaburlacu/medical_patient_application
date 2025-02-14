@@ -9,4 +9,6 @@ interface IEmergencyContactUseCase {
     fun getAll(): Flow<List<EmergencyContact>>
 
     fun getByPatientId(patientId: Long): Flow<List<EmergencyContact>>
+
+    fun deleteById(id: Long)
 }

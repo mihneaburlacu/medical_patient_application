@@ -9,21 +9,30 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.new_medical_application.R
 import com.example.new_medical_application.business.model.EmergencyContact
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ContactListAdapter(
     private var contactList: List<EmergencyContact>,
-    private val onTopicClick: (String) -> Unit
+    private val onTopicClick: (String) -> Unit,
+    private val onButtonClick: (Long) -> Unit
 ) : RecyclerView.Adapter<ContactListAdapter.ContactViewHolder>() {
 
     inner class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameText: TextView = itemView.findViewById(R.id.contact_name_text)
         val phoneText: TextView = itemView.findViewById(R.id.contact_phone_number_text)
         val emailText: TextView = itemView.findViewById(R.id.contact_email_text)
+        private val deleteButton: FloatingActionButton = itemView.findViewById(R.id.delete_contact_button)
         private val cardView: MaterialCardView = itemView.findViewById(R.id.contact_info_card)
 
-        fun bind(phoneNumber: String) {
+        fun bindTopic(phoneNumber: String) {
             cardView.setOnClickListener {
                 onTopicClick(phoneNumber)
+            }
+        }
+
+        fun bindButton(id: Long) {
+            deleteButton.setOnClickListener {
+                onButtonClick(id)
             }
         }
     }
@@ -41,7 +50,8 @@ class ContactListAdapter(
         holder.nameText.text = contact.name
         holder.emailText.text = contact.email
         holder.phoneText.text = contact.phoneNumber
-        holder.bind(contact.phoneNumber)
+        holder.bindTopic(contact.phoneNumber)
+        holder.bindButton(contact.id)
     }
 
     @SuppressLint("NotifyDataSetChanged")

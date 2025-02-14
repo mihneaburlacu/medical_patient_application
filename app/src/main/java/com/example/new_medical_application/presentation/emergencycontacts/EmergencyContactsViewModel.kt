@@ -30,6 +30,13 @@ class EmergencyContactsViewModel @Inject constructor(
         }
     }
 
+    fun deleteEmergencyContact(id: Long) {
+        viewModelScope.launch {
+            emergencyContactUseCase.deleteById(id)
+            fetchContacts()
+        }
+    }
+
     fun addEmergencyContact(contact: EmergencyContact) {
         viewModelScope.launch {
             emergencyContactUseCase.insertContact(contact)

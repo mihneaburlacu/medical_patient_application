@@ -43,4 +43,7 @@
     <dimen name="number_icon_size">16dp</dimen>
     <dimen name="margin_bottom_size">32dp</dimen>
 
+    <!--    Emergency contacts-->
+    <dimen name="add_contact_bottom_margin">2dp</dimen>
+
 </resources>
