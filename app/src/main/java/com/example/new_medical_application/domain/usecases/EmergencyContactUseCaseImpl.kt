@@ -6,37 +6,30 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class EmergencyContactUseCaseImpl(emergencyContactRepository: IEmergencyContactRepository) :
-    IEmergencyContactUseCase {
-    private var emergencyList = mutableListOf(
-        EmergencyContact(
-            1,
-            "Mihnea-Sebastian Burlacu",
-            "0727455324",
-            "mihneasebastianburlacu@gmail.com",
-            1
-        ),
-        EmergencyContact(2, "Roxana Dorobantu", "0727455324", "roxanadorobantu64@gmail.com", 1),
-
-        )
-
+class EmergencyContactUseCaseImpl @Inject constructor(
+    private val emergencyContactRepository: IEmergencyContactRepository
+) : IEmergencyContactUseCase {
     override fun insertContact(contact: EmergencyContact): Flow<Long> = flow {
-        emergencyList.add(contact)
-        emit(4L)
+        emit(emergencyContactRepository.insertContact(contact))
     }.flowOn(Dispatchers.IO)
 
     override fun getAll(): Flow<List<EmergencyContact>> = flow {
-        emit(emergencyList)
+        emit(emergencyContactRepository.getAll())
     }
 
     override fun getByPatientId(patientId: Long): Flow<List<EmergencyContact>> = flow {
-        emit(emergencyList)
+        emit(emergencyContactRepository.getContactByPatientId(patientId))
     }
 
-    override fun deleteById(id: Long) {
-        emergencyList = emergencyList.filterNot { it.id == id }.toMutableList()
+    override fun getContact(id: Long): Flow<EmergencyContact> = flow {
+        emit(emergencyContactRepository.getContactById(id))
+    }
+
+    override fun deleteById(id: Long): Flow<Unit> = flow {
+        emergencyContactRepository.deleteById(id)
     }
 }

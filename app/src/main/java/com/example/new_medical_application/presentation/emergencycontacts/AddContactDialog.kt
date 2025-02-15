@@ -30,7 +30,7 @@ class AddContactDialog(private val viewModel: EmergencyContactsViewModel) : Dial
             val email = binding.emailInput.editText?.text.toString()
 
             if (name.isNotEmpty() && phone.isNotEmpty() && email.isNotEmpty()) {
-                val newContact = EmergencyContact(5, name, phone, email, 1)
+                val newContact = EmergencyContact(0, name, phone, email, 1)
                 viewModel.addEmergencyContact(newContact)
                 showSnackbar(binding.root, "Contact saved successfully!")
                 dismiss()

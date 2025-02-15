@@ -5,5 +5,5 @@ data class EmergencyContact(
     val name: String,
     val phoneNumber: String,
     val email: String,
-    val patientId: Long
+    var patientId: Long
 )

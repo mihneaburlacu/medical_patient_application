@@ -3,6 +3,7 @@ package com.example.new_medical_application.data.di
 import android.content.Context
 import androidx.room.Room
 import com.example.new_medical_application.data.database.AppDatabase
+import com.example.new_medical_application.data.database.model.EmergencyContactDao
 import com.example.new_medical_application.data.database.model.MedicalDataDao
 import com.example.new_medical_application.data.database.model.PatientDao
 import com.example.new_medical_application.data.database.repos.EmergencyContactRepositoryImpl
@@ -42,6 +43,12 @@ object DatabaseModule {
 
     @Provides
     @Singleton
+    fun provideEmergencyContactDao(appDatabase: AppDatabase): EmergencyContactDao {
+        return appDatabase.emergencyContactDao()
+    }
+
+    @Provides
+    @Singleton
     fun providePatientRepository(
         patientDao: PatientDao
     ): IPatientRepository = PatientRepositoryImpl(patientDao)
@@ -55,8 +62,8 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideEmergencyContactRepository(
-
-    ): IEmergencyContactRepository = EmergencyContactRepositoryImpl()
+        emergencyContactDao: EmergencyContactDao
+    ): IEmergencyContactRepository = EmergencyContactRepositoryImpl(emergencyContactDao)
 
     @Provides
     @Singleton
