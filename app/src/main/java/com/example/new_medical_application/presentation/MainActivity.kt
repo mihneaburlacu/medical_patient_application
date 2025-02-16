@@ -17,6 +17,7 @@ import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import android.content.Intent
+import androidx.appcompat.app.AlertDialog
 import com.example.new_medical_application.service.ValueCollectorService
 import com.example.new_medical_application.service.ValueGeneratorService
 
@@ -62,12 +63,15 @@ class MainActivity : AppCompatActivity() {
             return true
         }
         when (item.itemId) {
-            R.id.action_login -> navController.navigate(R.id.loginFragment)
+            R.id.action_login -> {
+                showLogoutConfirmationDialog()
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onPrepareOptionsMenu(menu: android.view.Menu?): kotlin.Boolean {
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
         val menuItem = menu?.findItem(R.id.action_login)
         menuItem?.isVisible = navController.currentDestination?.id != R.id.loginFragment
         return super.onPrepareOptionsMenu(menu)
@@ -134,5 +138,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun clearWelcomeState() {
         sharedPreferencesHelper.setWelcomeMessageFlag(false)
+    }
+
+    private fun showLogoutConfirmationDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Confirm Logout")
+            .setMessage("Are you sure you want to log out?")
+            .setPositiveButton("Yes") { _, _ ->
+                navController.navigate(R.id.loginFragment)
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 }
