@@ -26,16 +26,23 @@ class ValueCollectorService : Service() {
             intent?.getIntExtra(EXTRA_RANDOM_VALUE, -1)?.let { value ->
                 Log.d("Mihnea123", "Received value: $value")
                 if (value < 50) {
-                    showNotification("⚠ Critical Low Value!", "Value dropped to $value", LOW_ALERT_NOTIFICATION_ID)
+                    showNotification(
+                        "⚠ Critical Low Value!",
+                        "Value dropped to $value for HRV",
+                        LOW_ALERT_NOTIFICATION_ID
+                    )
                 } else if (value > 120) {
-                    showNotification("⚠ High Value Alert!", "Value rose to $value", HIGH_ALERT_NOTIFICATION_ID)
+                    showNotification(
+                        "⚠ High Value Alert!",
+                        "Value rose to $value for HRV",
+                        HIGH_ALERT_NOTIFICATION_ID
+                    )
                 }
             }
         }
     }
 
     override fun onCreate() {
-        Log.d("Mihnea123", "Value collector on create")
         super.onCreate()
         createNotificationChannel()
         startForeground(COLLECTOR_NOTIFICATION_ID, buildNotification())
@@ -58,7 +65,6 @@ class ValueCollectorService : Service() {
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Log.d("Mihnea123", "Value creator create notification channel")
             val manager = getSystemService(NotificationManager::class.java)
 
             val channel = NotificationChannel(
@@ -75,7 +81,6 @@ class ValueCollectorService : Service() {
     }
 
     private fun showNotification(title: String, message: String, notificationId: Int) {
-        Log.d("Mihnea123", "Value collector show notification")
         val notification = NotificationCompat.Builder(this, ALERT_CHANNEL_ID)
             .setContentTitle(title)
             .setContentText(message)
@@ -89,7 +94,6 @@ class ValueCollectorService : Service() {
     }
 
     private fun buildNotification(): Notification {
-        Log.d("Mihnea123", "Value collector build notification")
         return NotificationCompat.Builder(this, COLLECTOR_CHANNEL_ID)
             .setContentTitle("Value Collector Running")
             .setContentText("Checking generated values...")

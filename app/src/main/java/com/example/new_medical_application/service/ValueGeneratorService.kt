@@ -4,11 +4,11 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
-import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.example.new_medical_application.common.AppConstants.ACTION_NEW_VALUE
@@ -18,7 +18,7 @@ import com.example.new_medical_application.common.AppConstants.GENERATOR_NOTIFIC
 import kotlin.random.Random
 
 class ValueGeneratorService : Service() {
-    private val handler = Handler()
+    private val handler = Handler(Looper.getMainLooper())
     private val interval = 30000L
 
     private val runnable = object : Runnable {
@@ -34,7 +34,6 @@ class ValueGeneratorService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        Log.d("Mihnea123", "Value generator on create")
         createNotificationChannel()
         startForeground(GENERATOR_NOTIFICATION_ID, buildNotification())
     }
@@ -53,7 +52,6 @@ class ValueGeneratorService : Service() {
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Log.d("Mihnea123", "Value generator create notification channel")
             val channel = NotificationChannel(
                 GENERATOR_CHANNEL_ID, "Generator Service",
                 NotificationManager.IMPORTANCE_LOW
@@ -64,7 +62,6 @@ class ValueGeneratorService : Service() {
     }
 
     private fun buildNotification(): Notification {
-        Log.d("Mihnea123", "Value generator build notification")
         return NotificationCompat.Builder(this, GENERATOR_CHANNEL_ID)
             .setContentTitle("Value Generator Running")
             .setContentText("Generating random values...")

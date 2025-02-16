@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true
         }
-        when(item.itemId) {
+        when (item.itemId) {
             R.id.action_login -> navController.navigate(R.id.loginFragment)
         }
         return super.onOptionsItemSelected(item)
@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(navigationView, navController)
-        navController.addOnDestinationChangedListener { _, destination, _ ->
+        navController.addOnDestinationChangedListener { _, _, _ ->
             invalidateOptionsMenu()
         }
     }
