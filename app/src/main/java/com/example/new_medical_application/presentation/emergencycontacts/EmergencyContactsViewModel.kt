@@ -24,17 +24,20 @@ class EmergencyContactsViewModel @Inject constructor(
     val patientID: StateFlow<Long> = _patientID
 
     init {
-        getPatientId()
         fetchContacts()
     }
 
     private fun fetchContacts() {
         viewModelScope.launch {
-            val id = patientID.value.takeIf { it != -1L } ?: 1
-            emergencyContactUseCase.getByPatientId(id)
-                .collect { contacts ->
-                    _emergencyContactsList.value = contacts
+            patientUseCase.getSavedPatientSharedPreference().collect {
+                if (it != null) {
+                    _patientID.value = it.id
+                    emergencyContactUseCase.getByPatientId(_patientID.value)
+                        .collect { contacts ->
+                            _emergencyContactsList.value = contacts
+                        }
                 }
+            }
         }
     }
 

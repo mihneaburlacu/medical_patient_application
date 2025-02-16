@@ -21,7 +21,14 @@ class LoginViewModel @Inject constructor(
     private val _loginState = MutableStateFlow<LoginState>(LoginState.Idle)
     val loginState: StateFlow<LoginState> = _loginState
 
-    fun login(username: String, password: String) {
+    private val _rememberMeChecked = MutableStateFlow(false)
+    val rememberMeChecked: StateFlow<Boolean> = _rememberMeChecked
+
+    init {
+        getRememberMeState()
+    }
+
+    fun login(username: String, password: String, isRemember: Boolean) {
         if (username.isBlank() || password.isBlank()) {
             _loginState.value = LoginState.Error("Username and password cannot be empty")
             return
@@ -38,6 +45,7 @@ class LoginViewModel @Inject constructor(
                     } else {
                         patientUseCase.login(username, password).collect { patient ->
                             patientUseCase.savePatientSharedPreference(patient)
+                            patientUseCase.saveRememberMeState(isRemember)
                             _loginState.value = LoginState.Success(patient)
                         }
                     }
@@ -50,6 +58,14 @@ class LoginViewModel @Inject constructor(
 
     fun resetState() {
         _loginState.value = LoginState.Idle
+    }
+
+    private fun getRememberMeState() {
+        viewModelScope.launch(Dispatchers.IO) {
+            patientUseCase.getRememberMeState().collect { isShown ->
+                _rememberMeChecked.value = isShown
+            }
+        }
     }
 
     fun getAllPatients() {

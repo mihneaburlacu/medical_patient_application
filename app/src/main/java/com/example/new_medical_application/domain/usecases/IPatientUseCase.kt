@@ -19,4 +19,6 @@ interface IPatientUseCase {
     fun saveWelcomeState(isShown: Boolean)
     fun getWelcomeState(): Flow<Boolean>
     fun clearWelcomeState()
+    fun saveRememberMeState(isChecked: Boolean)
+    fun getRememberMeState(): Flow<Boolean>
 }

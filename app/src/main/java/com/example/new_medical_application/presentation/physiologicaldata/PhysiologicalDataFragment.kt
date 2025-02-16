@@ -126,7 +126,14 @@ class PhysiologicalDataFragment : Fragment() {
     private fun collectChartData() {
         lifecycleScope.launch {
             viewModel.chartData.collect { chartData ->
-                updateChart(chartData)
+                if(chartData.isEmpty()) {
+                    binding.chart.visibility = View.GONE
+                    binding.noDataAvailable.visibility = View.VISIBLE
+                } else {
+                    binding.chart.visibility = View.VISIBLE
+                    binding.noDataAvailable.visibility = View.GONE
+                    updateChart(chartData)
+                }
             }
         }
     }

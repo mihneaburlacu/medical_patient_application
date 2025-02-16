@@ -53,7 +53,8 @@ class LoginFragment : Fragment() {
             loginButton.setOnClickListener {
                 val username = usernameInput.editText?.text.toString()
                 val password = passwordInput.editText?.text.toString()
-                viewModel.login(username, password)
+                val isRemembered = checkbox.isChecked
+                viewModel.login(username, password, isRemembered)
             }
         }
     }
@@ -76,6 +77,20 @@ class LoginFragment : Fragment() {
                         is LoginViewModel.LoginState.Error -> {
                             showSnackbar(binding.root, state.message)
                         }
+                    }
+                }
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.rememberMeChecked.collect { rememberMeChecked ->
+                    if (rememberMeChecked) {
+                        binding.progressBar.visibility = View.VISIBLE
+                        binding.loginLayout.visibility = View.GONE
+                        findNavController().navigate(R.id.action_loginFragment_to_mainMenuFragment)
+                    } else {
+                        binding.progressBar.visibility = View.GONE
+                        binding.loginLayout.visibility = View.VISIBLE
                     }
                 }
             }

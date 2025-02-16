@@ -45,4 +45,13 @@ class SharedPreferencesHelper @Inject constructor(
     fun clearWelcomeMessageFlag() {
         sharedPreferences.edit().remove(PREFS_PATIENT_KEY).apply()
     }
+
+    fun setRememberMeFlag(isChecked: Boolean) {
+        sharedPreferences.edit().putBoolean("PREFS_REMEMBER_ME_KEY", isChecked).apply()
+    }
+
+    fun getRememberMeFlag(): Boolean {
+        return sharedPreferences.getBoolean("PREFS_REMEMBER_ME_KEY", false)
+    }
+
 }

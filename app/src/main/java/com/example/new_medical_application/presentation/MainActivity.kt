@@ -145,6 +145,7 @@ class MainActivity : AppCompatActivity() {
         builder.setTitle("Confirm Logout")
             .setMessage("Are you sure you want to log out?")
             .setPositiveButton("Yes") { _, _ ->
+                sharedPreferencesHelper.setRememberMeFlag(false)
                 navController.navigate(R.id.loginFragment)
             }
             .setNegativeButton("Cancel") { dialog, _ ->

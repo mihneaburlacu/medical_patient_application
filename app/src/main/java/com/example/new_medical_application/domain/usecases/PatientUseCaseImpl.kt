@@ -62,4 +62,12 @@ class PatientUseCaseImpl @Inject constructor(
     override fun clearWelcomeState() {
         sharedPreferencesHelper.clearWelcomeMessageFlag()
     }
+
+    override fun saveRememberMeState(isChecked: Boolean) {
+        sharedPreferencesHelper.setRememberMeFlag(isChecked)
+    }
+
+    override fun getRememberMeState(): Flow<Boolean> = flow {
+        emit(sharedPreferencesHelper.getRememberMeFlag())
+    }
 }
