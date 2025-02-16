@@ -11,5 +11,15 @@ object AppConstants {
     const val DEFAULT_EMAIL_MSG = "Your email message here"
     const val DEFAULT_SMS_MSG = "Your SMS message here"
 
+    const val ACTION_NEW_VALUE = "com.example.new_medical_application.NEW_VALUE"
+    const val EXTRA_RANDOM_VALUE = "random_value"
+    const val GENERATOR_CHANNEL_ID = "value_generator_channel"
+    const val GENERATOR_NOTIFICATION_ID = 1
+    const val COLLECTOR_CHANNEL_ID = "value_collector_channel"
+    const val COLLECTOR_NOTIFICATION_ID = 2
+    const val ALERT_CHANNEL_ID = "alert_notifications"
+    const val LOW_ALERT_NOTIFICATION_ID = 100
+    const val HIGH_ALERT_NOTIFICATION_ID = 101
+
     const val EMPTY_STRING = ""
 }

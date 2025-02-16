@@ -16,6 +16,9 @@ import com.example.new_medical_application.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import android.content.Intent
+import com.example.new_medical_application.service.ValueCollectorService
+import com.example.new_medical_application.service.ValueGeneratorService
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -33,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupNavigation()
+        startServices()
     }
 
     override fun onStart() {
@@ -90,6 +94,11 @@ class MainActivity : AppCompatActivity() {
 
     fun checkItemAfterNavigation(navId: Int) {
         binding.navigationView.menu.findItem(navId).isChecked = true
+    }
+
+    private fun startServices() {
+        startForegroundService(Intent(this, ValueGeneratorService::class.java))
+        startForegroundService(Intent(this, ValueCollectorService::class.java))
     }
 
     private fun setNavigationListener(item: MenuItem) {
