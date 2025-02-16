@@ -60,6 +60,7 @@
     <string name="enter_email_text">Enter email:</string>
     <string name="enter_email_input">Enter email address...</string>
     <string name="contact_list_text">See your emergency contact list:</string>
+    <string name="logout_text">Logout</string>
 
     <string-array name="spinner_items">
         <item>Heart rate variability</item>
