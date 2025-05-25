@@ -114,6 +114,7 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_contacts -> navController.navigate(R.id.emergencyContactsFragment)
             R.id.nav_caregiver -> navController.navigate(R.id.caretakerFragment)
             R.id.nav_medical_topics -> navController.navigate(R.id.medicalTopicsFragment)
+            R.id.nav_medical_assistant -> navController.navigate(R.id.medicalAssistantFragment)
         }
         item.isChecked = true
         drawerLayout.closeDrawers()

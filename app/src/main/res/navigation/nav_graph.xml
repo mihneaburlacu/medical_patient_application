@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_mainMenuFragment_to_caretakerFragment"
             app:destination="@id/caretakerFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_medicalAssistantFragment"
+            app:destination="@id/medicalAssistantFragment" />
     </fragment>
 
     <fragment
@@ -80,4 +83,8 @@
         android:id="@+id/specificTopicFragment"
         android:name="com.example.new_medical_application.presentation.medicaltopics.SpecificTopicFragment"
         android:label="Medical Topic" />
+    <fragment
+        android:id="@+id/medicalAssistantFragment"
+        android:name="com.example.new_medical_application.presentation.assistant.MedicalAssistantFragment"
+        android:label="Medical Assistant" />
 </navigation>

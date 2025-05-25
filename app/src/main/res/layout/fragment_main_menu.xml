@@ -217,8 +217,9 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/general_radius"
         app:cardElevation="@dimen/general_elevation"
+        android:layout_marginEnd="@dimen/margin_small"
         app:layout_constraintBottom_toTopOf="@id/horizontal_bottom_guideline"
-        app:layout_constraintEnd_toEndOf="@id/vertical_end_guideline"
+        app:layout_constraintEnd_toEndOf="@id/vertical_middle_guideline"
         app:layout_constraintStart_toStartOf="@id/vertical_start_guideline"
         app:layout_constraintTop_toBottomOf="@id/horizontal_third_guideline">
 
@@ -242,6 +243,42 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/medical_topics_text"
+                android:textAppearance="@style/InformationTextBold" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/assistant_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_small"
+        app:cardCornerRadius="@dimen/general_radius"
+        app:cardElevation="@dimen/general_elevation"
+        app:layout_constraintBottom_toTopOf="@id/horizontal_bottom_guideline"
+        app:layout_constraintEnd_toEndOf="@id/vertical_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/vertical_middle_guideline"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_third_guideline">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/card_padding">
+
+            <ImageView
+                android:id="@+id/icon_assistant_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_between_text_icon"
+                android:contentDescription="@string/medical_assistant"
+                android:src="@drawable/ic_assistant" />
+
+            <TextView
+                android:id="@+id/text_assistant_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/medical_assistant"
                 android:textAppearance="@style/InformationTextBold" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/message_margin">
+
+    <TextView
+        android:id="@+id/text_date_other"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/message_margin"
+        android:paddingTop="@dimen/message_date_margin_horizontal"
+        android:paddingEnd="@dimen/message_margin"
+        android:paddingBottom="@dimen/message_date_margin_horizontal"
+        android:textColor="@color/chat_date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tool:text="June 10" />
+
+    <ImageView
+        android:id="@+id/image_profile_other"
+        android:layout_width="@dimen/user_icon_size"
+        android:layout_height="@dimen/user_icon_size"
+        android:layout_marginStart="@dimen/input_margin"
+        android:contentDescription="@string/user_icon_chat_text"
+        android:src="@drawable/ic_caretaker_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_date_other" />
+
+    <TextView
+        android:id="@+id/text_user_other"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/message_margin"
+        android:text="@string/ai_assistant_name"
+        android:textSize="@dimen/message_text_size"
+        app:layout_constraintStart_toEndOf="@id/image_profile_other"
+        app:layout_constraintTop_toBottomOf="@id/text_date_other" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_message_other"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/chat_card"
+        app:cardCornerRadius="@dimen/message_card_radius"
+        app:cardElevation="0dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintStart_toEndOf="@+id/image_profile_other"
+        app:layout_constraintTop_toBottomOf="@+id/text_user_other">
+
+        <LinearLayout
+            android:id="@+id/layout_container_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_message_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/message_margin"
+                android:maxWidth="@dimen/message_max_width"
+                android:paddingLeft="@dimen/message_card_radius"
+                android:paddingTop="@dimen/message_margin"
+                android:paddingRight="@dimen/message_card_radius"
+                android:textColor="#000000"
+                android:textSize="@dimen/message_text_size"
+                tool:text="Message" />
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/text_timestamp_other"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/chat_date"
+        android:textSize="@dimen/message_date_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/card_message_other"
+        app:layout_constraintStart_toEndOf="@+id/card_message_other"
+        tool:text="8:00" />
+</androidx.constraintlayout.widget.ConstraintLayout>

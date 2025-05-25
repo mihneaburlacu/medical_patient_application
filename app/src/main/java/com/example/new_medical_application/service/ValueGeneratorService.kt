@@ -19,7 +19,7 @@ import kotlin.random.Random
 
 class ValueGeneratorService : Service() {
     private val handler = Handler(Looper.getMainLooper())
-    private val interval = 30000L
+    private val interval = 60000L
 
     private val runnable = object : Runnable {
         override fun run() {

@@ -33,6 +33,7 @@ class MainMenuViewModel @Inject constructor(
             CardType.EMERGENCY_CONTACTS -> R.id.emergencyContactsFragment
             CardType.CARETAKER -> R.id.caretakerFragment
             CardType.MEDICAL_TOPICS -> R.id.medicalTopicsFragment
+            CardType.MEDICAL_ASSISTANT -> R.id.medicalAssistantFragment
         }
     }
 
@@ -69,6 +70,7 @@ class MainMenuViewModel @Inject constructor(
         PHYSIOLOGICAL_DATA,
         EMERGENCY_CONTACTS,
         CARETAKER,
-        MEDICAL_TOPICS
+        MEDICAL_TOPICS,
+        MEDICAL_ASSISTANT
     }
 }

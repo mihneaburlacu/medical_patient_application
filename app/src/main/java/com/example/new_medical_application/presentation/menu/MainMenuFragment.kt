@@ -94,6 +94,10 @@ class MainMenuFragment : Fragment() {
             navigateTo(viewModel.handleCardClick(MainMenuViewModel.CardType.MEDICAL_TOPICS))
             checkItemFromNavigationDrawer(R.id.nav_medical_topics)
         }
+        binding.assistantCard.setOnClickListener {
+            navigateTo(viewModel.handleCardClick(MainMenuViewModel.CardType.MEDICAL_ASSISTANT))
+            checkItemFromNavigationDrawer(R.id.nav_medical_assistant)
+        }
     }
 
     private fun welcomePatient(patient: Patient) {

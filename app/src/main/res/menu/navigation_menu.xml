@@ -29,4 +29,9 @@
         android:id="@+id/nav_medical_topics"
         android:title="@string/medical_topics_text"
         android:icon="@drawable/ic_topic" />
+
+    <item
+        android:id="@+id/nav_medical_assistant"
+        android:title="@string/medical_assistant"
+        android:icon="@drawable/ic_assistant" />
 </menu>

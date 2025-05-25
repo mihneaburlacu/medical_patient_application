@@ -46,4 +46,18 @@
     <!--    Emergency contacts-->
     <dimen name="add_contact_bottom_margin">2dp</dimen>
 
+    <!--    Medical Assistant-->
+    <dimen name="input_text_height">48dp</dimen>
+    <dimen name="view_line_height">1dp</dimen>
+    <dimen name="input_margin">16dp</dimen>
+    <dimen name="message_margin">8dp</dimen>
+    <dimen name="message_date_margin_vertical">32dp</dimen>
+    <dimen name="message_date_margin_horizontal">4dp</dimen>
+    <dimen name="message_card_radius">12dp</dimen>
+    <dimen name="message_max_width">260dp</dimen>
+    <dimen name="user_icon_size">24dp</dimen>
+
+    <dimen name="message_text_size">16sp</dimen>
+    <dimen name="message_date_text_size">10sp</dimen>
+
 </resources>
