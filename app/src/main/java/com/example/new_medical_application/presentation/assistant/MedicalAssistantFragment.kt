@@ -37,6 +37,7 @@ class MedicalAssistantFragment : Fragment() {
         setupRecyclerView()
         setupListeners()
         observeMessages()
+        observeLoadingState()
     }
 
     override fun onDestroyView() {
@@ -70,6 +71,16 @@ class MedicalAssistantFragment : Fragment() {
                 viewModel.messages.collectLatest { messages ->
                     chatAdapter.updateMessages(messages)
                     binding.assistantRecyclerview.scrollToPosition(messages.size - 1)
+                }
+            }
+        }
+    }
+
+    private fun observeLoadingState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.isLoading.collectLatest { isLoading ->
+                    binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
                 }
             }
         }

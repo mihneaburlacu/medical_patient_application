@@ -2,8 +2,10 @@ package com.example.new_medical_application.data.di
 
 import com.example.new_medical_application.domain.repositoryapi.FitbitRepositoryImpl
 import com.example.new_medical_application.domain.repositoryapi.IFitbitRepository
+import com.example.new_medical_application.domain.repositoryapi.IMedicalAssistantRepository
 import com.example.new_medical_application.domain.repositoryapi.IMedicalTopicDetailRepository
 import com.example.new_medical_application.domain.repositoryapi.IMedicalTopicsRepository
+import com.example.new_medical_application.domain.repositoryapi.MedicalAssistantRepositoryImpl
 import com.example.new_medical_application.domain.repositoryapi.MedicalTopicDetailRepositoryImpl
 import com.example.new_medical_application.domain.repositoryapi.MedicalTopicsRepositoryImpl
 import dagger.Module
@@ -27,4 +29,9 @@ object ApiModule {
     @Singleton
     fun provideMedicalTopicDetailRepository(): IMedicalTopicDetailRepository =
         MedicalTopicDetailRepositoryImpl()
+
+    @Provides
+    @Singleton
+    fun provideMedicalAssistantRepository(): IMedicalAssistantRepository =
+        MedicalAssistantRepositoryImpl()
 }

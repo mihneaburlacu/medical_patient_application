@@ -57,16 +57,25 @@
         app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
         app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
         app:layout_constraintTop_toBottomOf="@id/title" />
-    
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/description_text" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/assistant_recyclerview"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
-        app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
-        app:layout_constraintTop_toBottomOf="@id/description_text"
         android:layout_marginVertical="@dimen/input_margin"
-        app:layout_constraintBottom_toTopOf="@id/view_line"/>
+        app:layout_constraintBottom_toTopOf="@id/view_line"
+        app:layout_constraintEnd_toStartOf="@id/vertical_end_guideline"
+        app:layout_constraintStart_toEndOf="@id/vertical_start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/description_text" />
 
     <View
         android:id="@+id/view_line"
