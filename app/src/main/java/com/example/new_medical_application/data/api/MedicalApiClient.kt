@@ -6,6 +6,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object MedicalApiClient {
+    private const val MEDICAL_BASE_URL = "http://192.168.0.108:5000/"
+
     private val okHttpClient = OkHttpClient.Builder()
         .connectTimeout(60, TimeUnit.SECONDS)
         .readTimeout(60, TimeUnit.SECONDS)
@@ -13,7 +15,7 @@ object MedicalApiClient {
         .build()
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("http://192.168.0.103:5000/")
+        .baseUrl(MEDICAL_BASE_URL)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
